@@ -20,4 +20,4 @@ class SearchController {
     }
 }
 
-module.exports = new SearchController
+    module.exports = new SearchController

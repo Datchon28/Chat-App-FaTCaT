@@ -4,7 +4,6 @@ import ChatPage from './pages/ChatPage'
 import { io } from "socket.io-client"
 import SignUp from "./pages/Home/SignUp/SignUp"
 
-dotenv.config()
 
 const socket = io('https://chat-app-fatcat.onrender.com', {
   withCredentials: true

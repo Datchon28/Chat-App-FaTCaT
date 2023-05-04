@@ -27,7 +27,7 @@ db.connect(process.env.MONGO_URI)
 
 const io = new Server(http, {
   cors: {
-    origin: 'https://fatcat-chat-gbug665h9-datchon28.vercel.app/',
+    origin: 'http://localhost:3000',
     credentials: true
   }
 });
@@ -42,6 +42,7 @@ app.use('/search', Search)
 app.use('/rooms', Rooms)
 
 io.on("connection", (socket) => {
+  console.log('User connected');
   socket.on('user-login', (user) => {
     
   })
@@ -64,7 +65,7 @@ io.on("connection", (socket) => {
   })
 
   socket.on('disconnect', () => {
-    // console.log('🔥: A user disconnected');
+    console.log('🔥: A user disconnected');
   });
 })
 
