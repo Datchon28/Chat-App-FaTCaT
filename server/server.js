@@ -32,9 +32,9 @@ const io = new Server(http, {
   }
 });
 
-app.use('/', (req, res) => {
-  res.send('Welcome to Server Chat App Fat Cat')
-})
+// app.use('/', (req, res) => {
+//   res.send('Welcome to Server Chat App Fat Cat')
+// })
 
 app.use('/signup', SignUp)
 app.use('/login', Login)

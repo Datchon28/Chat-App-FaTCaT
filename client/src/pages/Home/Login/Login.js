@@ -29,6 +29,7 @@ function Login({ socket }) {
         password: password
       })
       .then(data => {
+        // console.log(data.data);
         if(data.data.length > 0) {
           const dataArray = data.data[0]
           delete dataArray['password']
