@@ -1,0 +1,30 @@
+
+
+#chat::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+#chat::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+#chat::-webkit-scrollbar-track {
+    background-color: #1d1e24;
+}
+
+.list-chat::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+.list-chat::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+.list-chat::-webkit-scrollbar-track {
+    background-color: #1d1e24;
+}
+
