@@ -30,9 +30,7 @@ class AccountsController {
             })
             .then(data => {
                if(data.length > 0 ) {
-                    console.log(data);
                     return res.send(data);
-                    // res.json(data)
                }else {
                     return res.status(401).send({
                     error: 'login failed'
