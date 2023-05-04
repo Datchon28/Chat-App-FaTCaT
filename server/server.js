@@ -28,8 +28,7 @@ db.connect(process.env.MONGO_URI)
 
 const io = new Server(http, {
   cors: {
-    origin: '*',
-    credentials: true,
+    origin: '*'
   }
 });
 
