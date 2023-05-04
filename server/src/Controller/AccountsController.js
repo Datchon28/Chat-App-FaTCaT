@@ -30,13 +30,14 @@ class AccountsController {
             })
             .then(data => {
                if(data.length > 0 ) {
-                    return res.send(data);
-               }else {
+                    return res.status(200).send(data);
+                }else {
                     return res.status(401).send({
                     error: 'login failed'
                 })
                }
             })
+            next()
             
         } catch (error) {
             console.log(error);

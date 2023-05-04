@@ -48,6 +48,10 @@ module.exports = {
 
       top: {
         'search-icon': '10%',
+      },
+      left: {
+        'loading-icon-chat-content': '48%',
+        'istyping': '277px',
       }
     },
   },

@@ -4,18 +4,16 @@ import ChatPage from './pages/ChatPage'
 import { io } from "socket.io-client"
 import SignUp from "./pages/Home/SignUp/SignUp"
 
-
-const socket = io('https://chat-app-fatcat.onrender.com', { })
+const socket = io(process.env.REACT_APP_SOCKET_API, { })
 
 function App() {
-  const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
-
+  
   return (
     <BrowserRouter>
         <div className="">
           <Routes>
             <Route path="/" element={<Home socket={socket}/>}></Route>
-            <Route path="/chat" element={user ? <ChatPage socket={socket}/> : <Navigate to='/' />}></Route>
+            <Route path="/chat" element={<ChatPage socket={socket}/>}></Route>
             <Route path="/signup" element={<SignUp socket={socket} />}></Route>
           </Routes>
     </div>

@@ -15,10 +15,6 @@ function Login({ socket }) {
 
   const [loading, setLoading] = useState(false)
 
-  // const rememberUser = () => {
-  //   setRemember(!remember)
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
@@ -29,17 +25,18 @@ function Login({ socket }) {
         password: password
       })
       .then(data => {
-        // console.log(data.data);
         if(data.data.length > 0) {
           const dataArray = data.data[0]
           delete dataArray['password']
-          remember ? localStorage.setItem('user', JSON.stringify(dataArray)) : sessionStorage.setItem('user', JSON.stringify(dataArray))
-          navigate('/chat')
-          
+
+          return remember ? localStorage.setItem('user', JSON.stringify(dataArray)) : sessionStorage.setItem('user', JSON.stringify(dataArray))
         }
       })
+      navigate('/chat')
+
     } catch (error) {
       error &&  alert(error.response.data.error)
+      navigate('/')
     }
     setLoading(false)
 

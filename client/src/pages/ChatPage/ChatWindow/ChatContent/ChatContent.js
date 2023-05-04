@@ -50,7 +50,7 @@ function ChatContent({  socket, isTyping, message, idRoomChoosing }) {
     return (
         <div id="chat" className='chat-content h-height-chat-content rounded-t-xl bg-color-content overflow-hidden mt-navbar px-4 bg-scroll'>
              <ul className='list-chat mt-3 flex flex-col overflow-hidden overflow-y-scroll h-full scroll-smooth pt-2 '>
-                <div>{loading === true && <span className='absolute animate-spin'><FontAwesomeIcon icon={faSpinner} /></span>}</div> 
+                <div>{loading === true && <span className=' text-lg absolute animate-spin left-loading-icon-chat-content'><FontAwesomeIcon icon={faSpinner} /></span>}</div> 
                 {
                     (allChat.map((msg, index) => (
                         
@@ -88,7 +88,7 @@ function ChatContent({  socket, isTyping, message, idRoomChoosing }) {
             </ul>
             
             
-            <div className=" absolute bottom-0 ">
+            <div className=" absolute bottom-20 left-istyping ">
                 {isTyping && userTyping && <span>{userTyping.userName} is typing...</span>}
             </div>
         </div>
