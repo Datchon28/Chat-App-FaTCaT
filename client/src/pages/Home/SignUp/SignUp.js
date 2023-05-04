@@ -106,7 +106,7 @@ function SignUp() {
     e.preventDefault();
     setLoading(true)
     if((ruleUserName && ruleEmail && ruleFirstName && ruleLastName && rulePassword) === false && acceptCondition) {
-        await axios.post('http://localhost:5000/signup', {
+        await axios.post('https://chat-app-fatcat.onrender.com/signup', {
         userName: userName,
         firstName: firstName,
         lastName: lastName, 

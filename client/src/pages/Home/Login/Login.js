@@ -24,7 +24,7 @@ function Login({ socket }) {
     setLoading(true)
     
     try {
-      await axios.post('http://localhost:5000/login', {
+      await axios.post('https://chat-app-fatcat.onrender.com/login', {
         userName: userName,
         password: password
       })

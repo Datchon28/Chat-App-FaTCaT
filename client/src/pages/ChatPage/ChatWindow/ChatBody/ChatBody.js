@@ -43,7 +43,7 @@ function ChatBody({ socket, listChatAndRoom, loading }) {
                 userName
             })
 
-            await axios.put('http://localhost:5000/rooms/message', 
+            await axios.put('https://chat-app-fatcat.onrender.com/rooms/message', 
             {    id: listChatAndRoom[0]._id,
                 userName: userName,
                 message: text

@@ -13,7 +13,7 @@ function ChatWindow({ socket }) {
        const fetchData = async() => {
            try {
                 await socket.on('id-room-choosing' , (idRoom) => {
-                    axios.post('http://localhost:5000/rooms/room_choose' , {
+                    axios.post('https://chat-app-fatcat.onrender.com/rooms/room_choose' , {
                         id: idRoom.id
                     })
                     .then(result => {

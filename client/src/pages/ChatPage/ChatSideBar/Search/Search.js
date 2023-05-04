@@ -18,7 +18,7 @@ function Search() {
         }
         const fetchData = async () => {
             setLoading(true)
-            await axios.get(`http://localhost:5000/search?userName=${debounce}`)
+            await axios.get(`https://chat-app-fatcat.onrender.com/search?userName=${debounce}`)
             .then(result => {
                 setResult(result.data);
             })

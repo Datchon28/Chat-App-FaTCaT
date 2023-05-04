@@ -33,7 +33,7 @@ function ChatSideBar({ socket, listChat }) {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:5000/rooms/detail')
+        axios.get('https://chat-app-fatcat.onrender.com/rooms/detail')
         .then(room => {
             const allRoom = room.data
             const Filter =  allRoom.filter((item, index) => {
@@ -48,7 +48,7 @@ function ChatSideBar({ socket, listChat }) {
 
     const handleCreateNewRoom = async() => {
         setCreateRoomSucess(true)
-        await axios.post('http://localhost:5000/rooms/add-room', {
+        await axios.post('https://chat-app-fatcat.onrender.com/rooms/add-room', {
             roomName: roomName,
             admin: {
                 id: currentUser._id ,

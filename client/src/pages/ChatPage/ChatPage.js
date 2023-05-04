@@ -11,7 +11,7 @@ function ChatPage({ socket }) {
 
     const [listChatAndRoom , setListChatAndRoom] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/rooms/detail')
+        axios.get('https://chat-app-fatcat.onrender.com/rooms/detail')
             .then(data => {
                 setListChatAndRoom(data.data);
             })
