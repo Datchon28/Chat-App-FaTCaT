@@ -27,7 +27,7 @@ db.connect(process.env.MONGO_URI)
 
 const io = new Server(http, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'https://fatcat-chat.vercel.app/',
     credentials: true
   }
 });
