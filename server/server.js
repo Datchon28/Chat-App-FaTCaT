@@ -3,8 +3,8 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const app = express()
-const { createServer } = require('https')
-const https = createServer(app)
+const { createServer } = require('http')
+const http = createServer(app)
 const { Server } = require('socket.io')
 
 
@@ -26,10 +26,10 @@ app.use(cors())
 
 db.connect(process.env.MONGO_URI)
 
-const io = new Server(https, {
+const io = new Server(http, {
   cors: {
-    origin: 'https://fatcat-chat.vercel.app/',
-    credentials: true
+    origin: '*',
+    credentials: true,
   }
 });
 
@@ -71,7 +71,7 @@ io.on("connection", (socket) => {
 })
 
    
-https.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
 });
 
