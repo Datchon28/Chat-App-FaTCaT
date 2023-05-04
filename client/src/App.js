@@ -5,9 +5,7 @@ import { io } from "socket.io-client"
 import SignUp from "./pages/Home/SignUp/SignUp"
 
 
-const socket = io('https://chat-app-fatcat.onrender.com', {
-  withCredentials: true
-})
+const socket = io('https://chat-app-fatcat.onrender.com', { })
 
 function App() {
   const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
