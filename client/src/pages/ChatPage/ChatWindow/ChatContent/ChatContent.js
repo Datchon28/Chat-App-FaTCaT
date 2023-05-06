@@ -4,7 +4,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-function ChatContent({  socket, isTyping, message, idRoomChoosing, }) {
+function ChatContent({  socket, isTyping, message, idRoomChoosing, ApiUrl }) {
     const currentUser = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
 
     const [userTyping, setUserTyping] = useState()
