@@ -4,7 +4,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-function ChatContent({  socket, isTyping, message, idRoomChoosing, ApiUrl }) {
+function ChatContent({  socket, isTyping, message, idRoomChoosing }) {
     const currentUser = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
 
     const [userTyping, setUserTyping] = useState()
@@ -19,6 +19,8 @@ function ChatContent({  socket, isTyping, message, idRoomChoosing, ApiUrl }) {
             setUserTyping(ut);
         })
 
+        console.log(idRoomChoosing);
+
         if(!idRoomChoosing) {
             setLoading(false)
             return
@@ -26,7 +28,7 @@ function ChatContent({  socket, isTyping, message, idRoomChoosing, ApiUrl }) {
 
         const fetchData = async() => {
             setLoading(true)
-            await axios.post(`${ApiUrl}/rooms/get-room-choose`, {
+            await axios.post('https://api-server-fatcat-chat.vercel.app/rooms/get-room-choose', {
             id: idRoomChoosing
             })
             .then(data => {

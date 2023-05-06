@@ -4,7 +4,7 @@ import ChatWindow from "./ChatWindow/ChatWindow";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 
-function ChatPage({ socket, ApiUrl }) {
+function ChatPage({ socket }) {
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const [roomChoosing, setRoomChoosing] = useState([])
 
@@ -12,7 +12,7 @@ function ChatPage({ socket, ApiUrl }) {
        const fetchData = async() => {
            try {
                 await socket.on('id-room-choosing' , (idRoom) => {
-                    axios.post(`${ApiUrl}/rooms/room_choose`, {
+                    axios.post('https://api-server-fatcat-chat.vercel.app/rooms/room_choose', {
                         id: idRoom.id
                     })
                     .then(result => {
@@ -23,15 +23,16 @@ function ChatPage({ socket, ApiUrl }) {
                 console.log(error);
            }
         }
-       fetchData()
+       fetchData()  
     },[socket])
+
 
     return (
        <>
         {user ? 
             <div className='wrapper'>
-                <ChatSideBar socket={socket} ApiUrl={ApiUrl} />
-                <ChatWindow socket={socket} roomChoosing={roomChoosing} ApiUrl={ApiUrl} />
+                <ChatSideBar socket={socket} />
+                <ChatWindow socket={socket} roomChoosing={roomChoosing} />
                 
             </div>
         : <Navigate to='/' />}

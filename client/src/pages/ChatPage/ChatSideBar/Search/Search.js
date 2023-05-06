@@ -4,7 +4,7 @@ import { faClose, faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
-function Search({ ApiUrl }) {
+function Search() {
     const [searchValue, setSearchValue] = useState('')
     const [result, setResult] = useState([])
     const [loading, setLoading] = useState(false)
@@ -18,7 +18,7 @@ function Search({ ApiUrl }) {
         }
         const fetchData = async () => {
             setLoading(true)
-            await axios.get(`${ApiUrl}/search?userName=${debounce}`)
+            await axios.get(`https://api-server-fatcat-chat.vercel.app/search?userName=${debounce}`)
             .then(result => {
                 setResult(result.data);
             })

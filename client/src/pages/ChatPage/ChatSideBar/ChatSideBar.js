@@ -9,7 +9,7 @@ import ListChat from "./ListChat/ListChat";
 import DropMenu from "../../../components/DropMenu/DropMenu";
 import References from "./References/References";
 
-function ChatSideBar({ socket, ApiUrl}) {
+function ChatSideBar({ socket }) {
     const currentUser = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
     // OpenRoom Toggle
@@ -37,7 +37,7 @@ function ChatSideBar({ socket, ApiUrl}) {
     }
 
     useEffect(() => {
-        axios.get(`${ApiUrl}/rooms/detail`)
+        axios.get('https://api-server-fatcat-chat.vercel.app/rooms/detail')
         .then(room => {
             const allRoom = room.data
             const Filter =  allRoom.filter((item, index) => {
@@ -51,7 +51,7 @@ function ChatSideBar({ socket, ApiUrl}) {
 
     const handleCreateNewRoom = async() => {
         setCreateRoomSucess(true)
-        await axios.post(`${ApiUrl}/rooms/add-room`, {
+        await axios.post('https://api-server-fatcat-chat.vercel.app/rooms/add-room', {
             roomName: roomName,
             admin: {
                 id: currentUser._id ,
@@ -84,7 +84,7 @@ function ChatSideBar({ socket, ApiUrl}) {
         <div className='wrapper flex justify-center flex-col text-white bg-color-sidebar w-60 h-screen fixed top-0 py-5 px-4 ' >
            <div  className=" mb-3 mt-9 h-24">
                 <h1 className=" text-3xl font-bold mb-3 px-2">Chat</h1>
-                <Search ApiUrl={ApiUrl} />
+                <Search />
            </div>
             
             <div className='chat-list flex-1 h-height-parent-list-chat-sidebar'>
