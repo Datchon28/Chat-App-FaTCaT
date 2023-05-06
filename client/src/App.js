@@ -4,7 +4,7 @@ import ChatPage from './pages/ChatPage'
 import { io } from "socket.io-client"
 import SignUp from "./pages/Home/SignUp/SignUp"
 
-const Api = process.env.REACT_APP_SOCKET_IO_API
+const Api = process.env.REACT_APP_SERVER_API
 
 const socket = io(Api, { })
 
