@@ -19,11 +19,8 @@ function ChatContent({  socket, isTyping, message, idRoomChoosing }) {
             setUserTyping(ut);
         })
 
-        console.log(idRoomChoosing);
-
         if(!idRoomChoosing) {
-            setLoading(false)
-            return
+            return;
         }
 
         const fetchData = async() => {
@@ -44,7 +41,6 @@ function ChatContent({  socket, isTyping, message, idRoomChoosing }) {
 
     useEffect(() => {
         lastMessage.current?.scrollIntoView({ behavior: 'smooth' })
-        
     },[message])
 
                     
