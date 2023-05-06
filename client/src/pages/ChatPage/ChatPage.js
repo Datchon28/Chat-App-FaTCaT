@@ -6,22 +6,32 @@ import { Navigate } from "react-router-dom";
 
 function ChatPage({ socket }) {
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
+    const [roomChoosing, setRoomChoosing] = useState([])
 
-    const [listChatAndRoom , setListChatAndRoom] = useState([])
     useEffect(() => {
-        axios.get('https://chat-app-fatcat.onrender.com/rooms/detail')
-            .then(data => {
-                setListChatAndRoom(data.data);
-        })
-       
-    }, [user])
+       const fetchData = async() => {
+           try {
+                await socket.on('id-room-choosing' , (idRoom) => {
+                    axios.post('https://chat-app-fatcat.onrender.com/rooms/room_choose' , {
+                        id: idRoom.id
+                    })
+                    .then(result => {
+                        setRoomChoosing(result.data);
+                    })
+                })
+           } catch (error) {
+                console.log(error);
+           }
+        }
+       fetchData()
+    },[socket])
 
     return (
        <>
         {user ? 
             <div className='wrapper'>
-                <ChatSideBar socket={socket} listChat={listChatAndRoom} />
-                <ChatWindow socket={socket} />
+                <ChatSideBar socket={socket} />
+                <ChatWindow socket={socket} roomChoosing={roomChoosing} />
                 
             </div>
         : <Navigate to='/' />}

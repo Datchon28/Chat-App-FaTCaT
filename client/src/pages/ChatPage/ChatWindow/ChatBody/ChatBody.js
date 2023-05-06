@@ -6,14 +6,14 @@ import { faFaceSmile, faImage } from '@fortawesome/free-regular-svg-icons'
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios'
 
-function ChatBody({ socket, listChatAndRoom, loading }) {
+function ChatBody({ socket, listChatAndRoom }) {
     const [text, setText] = useState('')
     const [message,  setMessage] = useState([]) 
     const [typing, setTyping] = useState(false)
 
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
+    const userName = user.userName
 
-    const userName = user ? user.userName : ''
 
     useEffect(() => {
         socket.on('chat-from-user', (data) => {
@@ -42,9 +42,11 @@ function ChatBody({ socket, listChatAndRoom, loading }) {
                 text,
                 userName
             })
+            setText('')
 
             await axios.put('https://chat-app-fatcat.onrender.com/rooms/message', 
-            {    id: listChatAndRoom[0]._id,
+            {   
+                id: listChatAndRoom[0]._id,
                 userName: userName,
                 message: text
             })
@@ -55,16 +57,14 @@ function ChatBody({ socket, listChatAndRoom, loading }) {
                 console.log(error);
             })
         }
-        setText('')
         setTyping(false)
     }
 
     return (
         <>  
+            <ChatContent isTyping={typing} idRoomChoosing={listChatAndRoom.length > 0 && listChatAndRoom[0]._id} socket={socket} message={message}  />
             
-            <ChatContent  isTyping={typing} idRoomChoosing={listChatAndRoom.length > 0 && listChatAndRoom[0]._id} socket={socket} message={message}  />
-            
-            <form className={`chat-writer ${listChatAndRoom.length <= 0 ? 'w-chat-window-width-none-choosing-room' : 'w-chat-window-width mr-80'} flex justify-between items-center fixed bottom-0 right-0  h-20 bg-color-content  px-8`} onSubmit={handleSendChat}>
+            <form className={`chat-writer ${listChatAndRoom.length <= 0 ? 'w-chat-window-width-none-choosing-room' : 'w-chat-window-width mr-80'} flex justify-between items-center fixed bottom-0 right-0 h-20 bg-color-content px-8 border border-solid border-color-chat-window`} onSubmit={handleSendChat}>
                 <input type="text" className=" rounded-lg relative pl-3 pr-52 w-full h-1/2 bg-color-input" value={text} onChange={ChatCurrentListenChange} />
 
                 <div className='flex justify-between items-center absolute mr-margin-send-btn right-0 pl-8'>

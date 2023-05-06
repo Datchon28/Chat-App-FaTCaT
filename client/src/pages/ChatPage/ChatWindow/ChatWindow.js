@@ -1,35 +1,13 @@
-import { useEffect, useState } from "react";
 import Navbar from "./NavBar/Navbar";
 import ChatBody from "./ChatBody/ChatBody";
-import axios from "axios";
-
 import SideBarChatRoom from "./SideBarChatRoom/SideBarChatRoom";
 
 
-function ChatWindow({ socket }) {
-    const [roomChoosing, setRoomChoosing] = useState([])
-
-    useEffect(() => {
-       const fetchData = async() => {
-           try {
-                await socket.on('id-room-choosing' , (idRoom) => {
-                    axios.post('https://chat-app-fatcat.onrender.com/rooms/room_choose' , {
-                        id: idRoom.id
-                    })
-                    .then(result => {
-                        setRoomChoosing(result.data);
-                    })
-                })
-           } catch (error) {
-                console.log(error);
-           }
-        }
-       fetchData()
-    },[socket])
+function ChatWindow({ socket, roomChoosing }) {
 
     return ( 
         <div className="main flex">
-            <div className='wrapper flex-1 bg-color-sidebar text-white ml-60 h-screen overflow-hidden' >
+            <div className='wrapper flex-1 bg-color-sidebar text-white ml-60 h-screen overflow-hidden border border-solid border-color-chat-window' >
                 <Navbar listChatAndRoom={roomChoosing} />
                 <ChatBody listChatAndRoom={roomChoosing} socket={socket} />
             </div>
@@ -37,9 +15,6 @@ function ChatWindow({ socket }) {
             <SideBarChatRoom data={roomChoosing} />
 
         </div>
-
-        
-        
     );
 }
 

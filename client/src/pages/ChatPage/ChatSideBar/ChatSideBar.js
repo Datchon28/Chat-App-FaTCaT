@@ -6,12 +6,16 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import NewRoomModal from "./NewRoom/NewRoomModal";
 import ListChat from "./ListChat/ListChat";
+import DropMenu from "../../../components/DropMenu/DropMenu";
+import References from "./References/References";
 
-function ChatSideBar({ socket, listChat }) {
+function ChatSideBar({ socket }) {
     const currentUser = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
     // OpenRoom Toggle
     const [openCreateNewRoom, setOpenCreateNewRoom] = useState(false)
+    const [menuUser, setMenuUser] = useState(false)
+    const [openReferences, setOpenReferences] = useState(false)
 
     // Check Create Room
     const [createRoomSucess, setCreateRoomSucess] = useState(false)
@@ -45,7 +49,6 @@ function ChatSideBar({ socket, listChat }) {
 
     }, [createRoomSucess])
 
-
     const handleCreateNewRoom = async() => {
         setCreateRoomSucess(true)
         await axios.post('https://chat-app-fatcat.onrender.com/rooms/add-room', {
@@ -66,17 +69,8 @@ function ChatSideBar({ socket, listChat }) {
         })
         setCreateRoomSucess(false)
         setOpenCreateNewRoom(false)
-        
     }
     
-    // const handleUpImg = (e) => {
-    //     console.log(e.target.value);
-    //     const img = document.querySelector('#avatar')
-    //     img.onload = () => {
-    //         URL.revokeObjectURL(img.src)
-    //     }
-    //     img.src = URL.createObjectURL(this.files[0])
-    // }
     const ChangeImage = (e) => {
         const reader = new FileReader()
         reader.onload = () => {
@@ -86,65 +80,62 @@ function ChatSideBar({ socket, listChat }) {
         reader.readAsDataURL(e.target.files[0])
     }
 
-
-    
     return (
         <div className='wrapper flex justify-center flex-col text-white bg-color-sidebar w-60 h-screen fixed top-0 py-5 px-4 ' >
            <div  className=" mb-3 mt-9 h-24">
-                <h1 className=" text-3xl font-bold mb-3">Chat</h1>
-           
+                <h1 className=" text-3xl font-bold mb-3 px-2">Chat</h1>
                 <Search />
            </div>
             
             <div className='chat-list flex-1 h-height-parent-list-chat-sidebar'>
                 <div className="h-12">
-                    <button className="w-full rounded-md text-center px-1 py-2 bg-sky-600 mt-2 cursor-pointer" onClick={handleOpenCreateRoom}>New Room</button>
+                    <button className="w-full rounded-md text-center px-1 py-2 bg-sky-600 mt-2 cursor-pointer hover:bg-sky-500 transition-colors duration-100" onClick={handleOpenCreateRoom}>New Room</button>
                 </div>
                 
                {openCreateNewRoom &&  
                     <div>
-                        <NewRoomModal openingRoom={openCreateNewRoom} 
-                        infoRoom={
-                            <div className="info-room flex flex-col">
-                            <label className="flex flex-col mt-3">
-                                <span>Room Name</span>
-                                <input className="mt-1 pl-2 h-8 rounded-md text-black" onChange={e => setRoomName(e.target.value)} value={roomName} placeholder="Name Your Room"/>
-                            </label>
+                        <NewRoomModal openingRoom={openCreateNewRoom}
+                            // Room Name 
+                            onChangeRoomName={e => setRoomName(e.target.value)}
+                            roomName={roomName}
+                            // Add Member
+                            onChangeMember={e => setMember(e.target.value)}
+                            member={member}
 
-                            <label className="flex flex-col mt-3">
-                                <span>Add People</span>
-                                <input className="mt-1 pl-2 h-8 rounded-md text-black" onChange={e => setMember(e.target.value)} value={member} placeholder="Add Some People" />
-                            </label>
-                        </div>
-                        }
-
-                        button={ 
-                            <div className="btn-control absolute bottom-0 right-0">
-                                <button onClick={handleCreateNewRoom} className="cancle px-3 py-2 mr-2 rounded-md bg-sky-600 hover:bg-sky-500 transition-colors">Create</button>
-                                <button onClick={() => setOpenCreateNewRoom(false)} className='confirm px-3 py-2 rounded-md'>Cancle</button>
-                            </div>
-                        } />
-                        
+                            // OpenRoom
+                            onClick={() => setOpenCreateNewRoom(false)}
+                            // Create button
+                            createNewRoom={handleCreateNewRoom}
+                        />
                     </div>
                 }
-                
-
                 <ListChat socket={socket} room={room} />
             </div>
 
             <div className="h-28">
-                <div className='user flex items-center mb-4 '>
-                    <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
-                    <span className=' text-lg font-bold '>{currentUser && `${currentUser.firstName}` + ' ' + `${currentUser.lastName}`}</span>
-                </div>
-                    <input onChange={ChangeImage} type='file'  className='w-12 mr-3 rounded-full object-cover' />
+               <DropMenu content={
+                    <ul className=" w-auto h-auto shadow-sm shadow-slate-400 rounded-lg text-md">
+                        <li className=" hover:bg-sky-600 transition-colors cursor-pointer bg-color-none-seen text-center px-4 py-3 my-1 font-semibold rounded-t-md" onClick={() => setOpenReferences(!openReferences)}>Preferences</li>
+                        <li className=" hover:bg-sky-600 transition-colors cursor-pointer bg-color-none-seen text-center px-4 py-3 my-1 font-semibold">Account & support</li>
+                        <li className=" hover:bg-sky-600 transition-colors cursor-pointer bg-color-none-seen text-center px-4 py-3 my-1 font-semibold rounded-b-md">
+                            <button className='' onClick={handleSignOut}>
+                                <span className=" text-center pt-1 mr-2 text-lg"><FontAwesomeIcon icon={faSignOut} /></span>
+                                Sign Out
+                            </button>
+                        </li>
+                        
+                    </ul>
+               }>
+                    <div className='user flex items-center' onClick={() => setMenuUser(!menuUser)}>
+                        <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
+                        <span className=' text-lg font-bold '>{currentUser && `${currentUser.firstName}` + ' ' + `${currentUser.lastName}`}</span>
+                    </div>
+                </DropMenu>
 
-                <div className='user flex items-center'>
-                    <button className=' py-2 px-8 ml-1 text-lg font-bold' onClick={handleSignOut}>
-                        <span className="mr-2 text-xl"><FontAwesomeIcon icon={faSignOut} /></span>
-                        <span>Sign Out</span>
-                    </button>
-                </div>
+                {openReferences && <References onClick={() => setOpenReferences(!openReferences)} />}
+
+                {/* <input onChange={ChangeImage} type='file'  className='w-12 mr-3 rounded-full object-cover' /> */}
+                
             </div>
             
         </div>
