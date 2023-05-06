@@ -4,7 +4,8 @@ import ChatPage from './pages/ChatPage'
 import { io } from "socket.io-client"
 import SignUp from "./pages/Home/SignUp/SignUp"
 
-const socket = io(process.env.REACT_APP_SOCKET_API, { })
+const ApiUrl = process.env.REACT_APP_SOCKET_API
+const socket = io(ApiUrl, { })
 
 function App() {
   
@@ -12,9 +13,9 @@ function App() {
     <BrowserRouter>
         <div className="">
           <Routes>
-            <Route path="/" element={<Home socket={socket}/>}></Route>
-            <Route path="/chat" element={<ChatPage socket={socket}/>}></Route>
-            <Route path="/signup" element={<SignUp socket={socket} />}></Route>
+            <Route path="/" element={<Home socket={socket} ApiUrl={ApiUrl} />}></Route>
+            <Route path="/chat" element={<ChatPage socket={socket} ApiUrl={ApiUrl} />}></Route>
+            <Route path="/signup" element={<SignUp socket={socket} ApiUrl={ApiUrl} />}></Route>
           </Routes>
     </div>
     </BrowserRouter>

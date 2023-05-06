@@ -4,7 +4,7 @@ import { faClose, faSearch, faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
-function Search() {
+function Search({ ApiUrl }) {
     const [searchValue, setSearchValue] = useState('')
     const [result, setResult] = useState([])
     const [loading, setLoading] = useState(false)
@@ -18,7 +18,7 @@ function Search() {
         }
         const fetchData = async () => {
             setLoading(true)
-            await axios.get(`https://chat-app-fatcat.onrender.com/search?userName=${debounce}`)
+            await axios.get(`${ApiUrl}/search?userName=${debounce}`)
             .then(result => {
                 setResult(result.data);
             })

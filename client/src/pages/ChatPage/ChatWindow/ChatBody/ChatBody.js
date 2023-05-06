@@ -6,7 +6,7 @@ import { faFaceSmile, faImage } from '@fortawesome/free-regular-svg-icons'
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios'
 
-function ChatBody({ socket, listChatAndRoom }) {
+function ChatBody({ socket, listChatAndRoom, ApiUrl}) {
     const [text, setText] = useState('')
     const [message,  setMessage] = useState([]) 
     const [typing, setTyping] = useState(false)
@@ -44,7 +44,7 @@ function ChatBody({ socket, listChatAndRoom }) {
             })
             setText('')
 
-            await axios.put('https://chat-app-fatcat.onrender.com/rooms/message', 
+            await axios.put(`${ApiUrl}/rooms/message`, 
             {   
                 id: listChatAndRoom[0]._id,
                 userName: userName,
@@ -62,7 +62,7 @@ function ChatBody({ socket, listChatAndRoom }) {
 
     return (
         <>  
-            <ChatContent isTyping={typing} idRoomChoosing={listChatAndRoom.length > 0 && listChatAndRoom[0]._id} socket={socket} message={message}  />
+            <ChatContent ApiUrl={ApiUrl} isTyping={typing} idRoomChoosing={listChatAndRoom.length > 0 && listChatAndRoom[0]._id} socket={socket} message={message}  />
             
             <form className={`chat-writer ${listChatAndRoom.length <= 0 ? 'w-chat-window-width-none-choosing-room' : 'w-chat-window-width mr-80'} flex justify-between items-center fixed bottom-0 right-0 h-20 bg-color-content px-8 border border-solid border-color-chat-window`} onSubmit={handleSendChat}>
                 <input type="text" className=" rounded-lg relative pl-3 pr-52 w-full h-1/2 bg-color-input" value={text} onChange={ChatCurrentListenChange} />

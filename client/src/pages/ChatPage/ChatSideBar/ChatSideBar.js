@@ -9,7 +9,7 @@ import ListChat from "./ListChat/ListChat";
 import DropMenu from "../../../components/DropMenu/DropMenu";
 import References from "./References/References";
 
-function ChatSideBar({ socket }) {
+function ChatSideBar({ socket, ApiUrl}) {
     const currentUser = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
     // OpenRoom Toggle
@@ -37,7 +37,7 @@ function ChatSideBar({ socket }) {
     }
 
     useEffect(() => {
-        axios.get('https://chat-app-fatcat.onrender.com/rooms/detail')
+        axios.get(`${ApiUrl}/rooms/detail`)
         .then(room => {
             const allRoom = room.data
             const Filter =  allRoom.filter((item, index) => {
@@ -51,7 +51,7 @@ function ChatSideBar({ socket }) {
 
     const handleCreateNewRoom = async() => {
         setCreateRoomSucess(true)
-        await axios.post('https://chat-app-fatcat.onrender.com/rooms/add-room', {
+        await axios.post(`${ApiUrl}/rooms/add-room`, {
             roomName: roomName,
             admin: {
                 id: currentUser._id ,
@@ -84,7 +84,7 @@ function ChatSideBar({ socket }) {
         <div className='wrapper flex justify-center flex-col text-white bg-color-sidebar w-60 h-screen fixed top-0 py-5 px-4 ' >
            <div  className=" mb-3 mt-9 h-24">
                 <h1 className=" text-3xl font-bold mb-3 px-2">Chat</h1>
-                <Search />
+                <Search ApiUrl={ApiUrl} />
            </div>
             
             <div className='chat-list flex-1 h-height-parent-list-chat-sidebar'>

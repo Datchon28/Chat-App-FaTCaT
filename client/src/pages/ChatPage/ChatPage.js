@@ -4,7 +4,7 @@ import ChatWindow from "./ChatWindow/ChatWindow";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 
-function ChatPage({ socket }) {
+function ChatPage({ socket, ApiUrl }) {
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const [roomChoosing, setRoomChoosing] = useState([])
 
@@ -12,7 +12,7 @@ function ChatPage({ socket }) {
        const fetchData = async() => {
            try {
                 await socket.on('id-room-choosing' , (idRoom) => {
-                    axios.post('https://chat-app-fatcat.onrender.com/rooms/room_choose' , {
+                    axios.post(`${ApiUrl}/rooms/room_choose`, {
                         id: idRoom.id
                     })
                     .then(result => {
@@ -30,8 +30,8 @@ function ChatPage({ socket }) {
        <>
         {user ? 
             <div className='wrapper'>
-                <ChatSideBar socket={socket} />
-                <ChatWindow socket={socket} roomChoosing={roomChoosing} />
+                <ChatSideBar socket={socket} ApiUrl={ApiUrl} />
+                <ChatWindow socket={socket} roomChoosing={roomChoosing} ApiUrl={ApiUrl} />
                 
             </div>
         : <Navigate to='/' />}

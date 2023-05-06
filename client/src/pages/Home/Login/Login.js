@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../../../assets/Logo.png'
 
-function Login({ socket }) {
+function Login({ ApiUrl }) {
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +20,7 @@ function Login({ socket }) {
     setLoading(true)
     
     try {
-      await axios.post('https://chat-app-fatcat.onrender.com/login', {
+      await axios.post(`${ApiUrl}/login`, {
         userName: userName,
         password: password
       })

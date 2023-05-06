@@ -2,11 +2,11 @@
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 
-function Home({ socket }) {
+function Home({ ApiUrl }) {
   
   return (
       <div className="main">
-        <Login />
+        <Login ApiUrl={ApiUrl} />
       </div>
   );
 };
