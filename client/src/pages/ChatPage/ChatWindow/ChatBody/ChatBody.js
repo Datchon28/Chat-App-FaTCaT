@@ -44,7 +44,7 @@ function ChatBody({ socket, listChatAndRoom }) {
             })
             setText('')
 
-            await axios.put('https://api-server-fatcat-chat.vercel.app/rooms/message', 
+            await axios.put('https://chat-app-fatcat.onrender.com/rooms/message', 
             {   
                 id: listChatAndRoom[0]._id,
                 userName: userName,

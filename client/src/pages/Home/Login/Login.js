@@ -20,7 +20,7 @@ function Login({ ApiUrl }) {
     setLoading(true)
     
     try {
-      await axios.post('https://api-server-fatcat-chat.vercel.app/login', {
+      await axios.post('https://chat-app-fatcat.onrender.com/login', {
         userName: userName,
         password: password
       })

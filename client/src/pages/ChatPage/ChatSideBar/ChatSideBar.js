@@ -37,7 +37,7 @@ function ChatSideBar({ socket }) {
     }
 
     useEffect(() => {
-        axios.get('https://api-server-fatcat-chat.vercel.app/rooms/detail')
+        axios.get('https://chat-app-fatcat.onrender.com/rooms/detail')
         .then(room => {
             const allRoom = room.data
             const Filter =  allRoom.filter((item, index) => {
@@ -51,7 +51,7 @@ function ChatSideBar({ socket }) {
 
     const handleCreateNewRoom = async() => {
         setCreateRoomSucess(true)
-        await axios.post('https://api-server-fatcat-chat.vercel.app/rooms/add-room', {
+        await axios.post('https://chat-app-fatcat.onrender.com/rooms/add-room', {
             roomName: roomName,
             admin: {
                 id: currentUser._id ,

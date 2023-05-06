@@ -106,7 +106,7 @@ function SignUp({ ApiUrl }) {
     e.preventDefault();
     setLoading(true)
     if((ruleUserName && ruleEmail && ruleFirstName && ruleLastName && rulePassword) === false && acceptCondition) {
-        await axios.post('https://api-server-fatcat-chat.vercel.app/signup', {
+        await axios.post('https://chat-app-fatcat.onrender.com/signup', {
         userName: userName,
         firstName: firstName,
         lastName: lastName, 

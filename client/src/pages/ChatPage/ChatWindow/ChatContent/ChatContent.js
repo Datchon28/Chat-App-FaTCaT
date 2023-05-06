@@ -28,7 +28,7 @@ function ChatContent({  socket, isTyping, message, idRoomChoosing }) {
 
         const fetchData = async() => {
             setLoading(true)
-            await axios.post('https://api-server-fatcat-chat.vercel.app/rooms/get-room-choose', {
+            await axios.post('https://chat-app-fatcat.onrender.com/rooms/get-room-choose', {
             id: idRoomChoosing
             })
             .then(data => {
