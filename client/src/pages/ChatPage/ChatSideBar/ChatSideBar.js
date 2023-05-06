@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Search from "./Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOut } from "@fortawesome/free-solid-svg-icons";
@@ -8,8 +8,10 @@ import NewRoomModal from "./NewRoom/NewRoomModal";
 import ListChat from "./ListChat/ListChat";
 import DropMenu from "../../../components/DropMenu/DropMenu";
 import References from "./References/References";
+import { ApiServer } from "../../../App";
 
 function ChatSideBar({ socket }) {
+    const Api = useContext(ApiServer)
     const currentUser = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const navigate = useNavigate()
     // OpenRoom Toggle
@@ -37,7 +39,7 @@ function ChatSideBar({ socket }) {
     }
 
     useEffect(() => {
-        axios.get('https://chat-app-fatcat.onrender.com/rooms/detail')
+        axios.get(`${Api}/rooms/detail`)
         .then(room => {
             const allRoom = room.data
             const Filter =  allRoom.filter((item, index) => {
@@ -51,7 +53,7 @@ function ChatSideBar({ socket }) {
 
     const handleCreateNewRoom = async() => {
         setCreateRoomSucess(true)
-        await axios.post('https://chat-app-fatcat.onrender.com/rooms/add-room', {
+        await axios.post(`${Api}/rooms/add-room`, {
             roomName: roomName,
             admin: {
                 id: currentUser._id ,

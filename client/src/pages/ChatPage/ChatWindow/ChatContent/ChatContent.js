@@ -4,7 +4,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-function ChatContent({  socket, isTyping, message, idRoomChoosing }) {
+function ChatContent({ Api, socket, isTyping, message, idRoomChoosing }) {
     const currentUser = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
 
     const [userTyping, setUserTyping] = useState()
@@ -25,7 +25,7 @@ function ChatContent({  socket, isTyping, message, idRoomChoosing }) {
 
         const fetchData = async() => {
             setLoading(true)
-            await axios.post('https://chat-app-fatcat.onrender.com/rooms/get-room-choose', {
+            await axios.post(`${Api}/rooms/get-room-choose`, {
             id: idRoomChoosing
             })
             .then(data => {
