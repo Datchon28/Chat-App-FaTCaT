@@ -114,7 +114,7 @@ function ChatSideBar({ socket }) {
                 <ListChat socket={socket} room={room} />
             </div>
 
-            <div className="h-28">
+            <div className="h-28 flex items-end justify-between">
                <DropMenu content={
                     <ul className=" w-auto h-auto shadow-sm shadow-slate-400 rounded-lg text-md">
                         <li className=" hover:bg-sky-600 transition-colors cursor-pointer bg-color-none-seen text-center px-4 py-3 my-1 font-semibold rounded-t-md" onClick={() => setOpenReferences(!openReferences)}>Preferences</li>

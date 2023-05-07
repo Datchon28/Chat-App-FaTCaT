@@ -45,7 +45,7 @@ function ChatContent({ Api, socket, isTyping, message, idRoomChoosing }) {
 
                     
     return (
-        <div id="chat" className='chat-content h-height-chat-content bg-color-content overflow-hidden mt-navbar bg-scroll'>
+        <div id="chat" className='chat-content h-height-chat-content bg-color-content overflow-hidden bg-scroll'>
              <ul className='list-chat mt-3 flex flex-col overflow-hidden overflow-y-scroll h-full scroll-smooth pt-2 '>
                 <div>
                     {loading === true && 
@@ -61,7 +61,7 @@ function ChatContent({ Api, socket, isTyping, message, idRoomChoosing }) {
                                     <img alt="avatar" src='https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg' className='mb-2 w-12 mr-3 rounded-full w-9' />
                                     <span className=" text-sm mr-2 ">{msg.userName}</span>
                                     </div>
-                                    <span className={` w-fit relative rounded-xl max-w-xs py-2 text-center ${currentUser.userName === msg.userName ? 'bg-sky-600 right-8 ' : 'bg-white left-4.5 text-black '} px-4 py-1  `}>
+                                    <span className={` w-fit  rounded-xl max-w-xs py-2 text-center ${currentUser.userName === msg.userName ? 'bg-sky-600 mr-3 ' : 'bg-white text-black ml-3 '} px-4 py-1  `}>
                                         {msg.text && msg.text}
                                     </span>
                                 </div>
@@ -88,7 +88,7 @@ function ChatContent({ Api, socket, isTyping, message, idRoomChoosing }) {
             </ul>
             
             
-            <div className=" absolute bottom-20 left-istyping ">
+            <div className=" absolute bottom-20 left-istyping ml-3 ">
                 {isTyping && userTyping && <span>{userTyping.userName} is typing...</span>}
             </div>
         </div>

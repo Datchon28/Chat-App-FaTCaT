@@ -50,6 +50,7 @@ module.exports = {
         'color-search-user': '#16171b',
         'color-modal-new-room': '#1a3250',
         'modal' : 'rgba(0,0,0,0.5)',
+        'list-references' : 'rgba(0,0,0,0.1)',
       },
 
       top: {
@@ -59,6 +60,7 @@ module.exports = {
         'loading-icon-chat-content': '48%',
         'istyping': '277px',
       },
+      
       fontSize: {
         'lastmessage-sumary-sidebar': '13px'
       },

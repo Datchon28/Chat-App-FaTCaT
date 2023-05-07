@@ -42,7 +42,7 @@ function SideBarChatRoom({ data }) {
                         </div>
                     </div>
 
-                    <div className=' w-full h-7 mt-3 mb-3'>
+                    <div className={`w-full ${searchMessage ? 'h-7' : 'h-0'} mt-3 mb-3`}>
                         <input className={`${searchMessage === false ? 'w-0 h-0' : 'w-full h-full'} rounded-md transition-all text-black px-2`} placeholder="Search Messages" />
                     </div>
                 </div>
