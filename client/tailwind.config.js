@@ -47,7 +47,7 @@ module.exports = {
       },
 
       backgroundColor: {
-        'color-primary' : '#0147ff',
+        'color-primary' : '#0f75ff', //#0f75ff 0147ff
         'dark-color-primary': 'rgb(2 132 199 / 1)',
         'modal' : 'rgba(0,0,0,0.5)',
 
@@ -73,7 +73,7 @@ module.exports = {
       },
 
       textColor: {
-        'primary': '#0147ff',
+        'primary': '#0f75ff',
         // Light THeme: 
         'color-title': '#000',
         'color-message': '#fff',

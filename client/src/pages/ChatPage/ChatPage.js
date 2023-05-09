@@ -15,9 +15,7 @@ function ChatPage({ socket }) {
        const fetchData = async() => {
            try {
                 await socket.on('id-room-choosing' , (idRoom) => {
-                    axios.post(`${Api}/rooms/room_choose`, {
-                        id: idRoom.id
-                    })
+                    axios.get(`${Api}/rooms/room_choose?id=${idRoom.id}`)
                     .then(result => {
                         setRoomChoosing(result.data);
                     })

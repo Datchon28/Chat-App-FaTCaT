@@ -41,12 +41,9 @@ function ChatSideBar({ socket }) {
         sessionStorage.removeItem('user')
         navigate('/')
     }
-    
+    // ${Api}
     useEffect(() => {
-        axios.post(`${Api}/rooms/detail` , {
-            admin: currentUser._id,
-            person: currentUser.userName
-        })
+        axios.get(`${Api}/rooms/detail?admin=${currentUser._id}&person=${currentUser.userName}` )
         .then(room => {
             setRoom(room.data);
         })

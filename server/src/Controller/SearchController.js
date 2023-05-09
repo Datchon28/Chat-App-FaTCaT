@@ -3,10 +3,9 @@ const Accounts = require('../module/Accounts')
 class SearchController {
 
     async user(req, res, next) {
-        const params = req.query
         try {
             await Accounts.find({
-                userName: params.userName
+                userName: req.query.userName
             })
             .then(data=> {
                 res.status(200).send(data)

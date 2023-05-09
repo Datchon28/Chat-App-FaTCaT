@@ -5,7 +5,7 @@ class RoomsController {
     
     async detail(req, res, next) {
         try {
-            await Rooms.find({ $or: [ {"admin.id": req.body.admin} , {people: { $elemMatch: { "person.userName": req.body.person } }} ] })
+            await Rooms.find({ $or: [ {"admin.id": req.query.admin} , {people: { $elemMatch: { "person.userName": req.query.person } }} ] })
             .then(data => {
                 res.status(200).send(data)
             })
@@ -17,7 +17,7 @@ class RoomsController {
 
     async roomChoose(req, res, next) {
         try {
-            await Rooms.find({ _id: req.body.id })
+            await Rooms.find({ _id: req.query.id })
             .then(result => {
                 res.status(200).send(result)
             })
@@ -29,7 +29,7 @@ class RoomsController {
 
     async getRoomChoose(req, res, next) {
         try {
-            await Rooms.find({ _id: req.body.id })
+            await Rooms.find({ _id: req.query.id })
             .then(result => {
                 // console.log(result);
                 res.status(200).send(result)

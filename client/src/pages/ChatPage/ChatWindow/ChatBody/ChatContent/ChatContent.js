@@ -25,20 +25,19 @@ function ChatContent({ Api, socket, isTyping, message, idRoomChoosing }) {
 
         const fetchData = async() => {
             setLoading(true)
-            await axios.post(`${Api}/rooms/get-room-choose`, {
-            id: idRoomChoosing
-            })
+            await axios.get(`${Api}/rooms/get-room-choose?id=${idRoomChoosing}`)
             .then(data => {
                 setAllChat(data.data[0].messages);
             })
             setLoading(false)
-
+            
         }
         fetchData()
 
+        // allChat.length > 0 &&  console.log(allChat[allChat.length -1].userName)
+        
     },[socket, idRoomChoosing])
-
-
+    
     useEffect(() => {
         lastMessage.current?.scrollIntoView({ behavior: 'smooth' })
     },[message])
@@ -58,8 +57,8 @@ function ChatContent({ Api, socket, isTyping, message, idRoomChoosing }) {
                             <li key={index} id="user" className={`flex items-center ${currentUser.userName === ms.userName ? 'justify-end': 'justify-start'} text-color-title dark:text-white font-semibold mb-6 w-full py-1 px-1`} >
                                 <div className=" flex flex-col items-end ">
                                     <div className={`flex items-center ${currentUser.userName === ms.userName && 'flex-row-reverse '}`}>
-                                    <img alt="avatar" src='https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg' className='mb-2 mr-3 rounded-full w-9' />
-                                    <span className=" text-sm font-semibold mr-2 ">{ms.userName}</span>
+                                        <img alt="avatar" src='https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg' className='mb-2 mr-3 rounded-full w-9' />
+                                        <span className=" text-sm font-semibold mr-2 ">{ms.userName}</span>
                                     </div>
                                     <span className={` w-fit  rounded-xl max-w-xs py-2 text-center ${currentUser.userName === ms.userName ? 'bg-color-primary dark:bg-dark-color-primary mr-3 text-color-message  ' : 'bg-white text-black ml-3 '} px-4 py-1  `}>
                                         {ms.text && ms.text}

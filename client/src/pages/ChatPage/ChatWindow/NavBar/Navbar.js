@@ -1,4 +1,4 @@
-import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisVertical, faInfoCircle, faPhoneVolume, faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -11,8 +11,10 @@ function Navbar({ roomChoosing }) {
                     <div className="user-name">
                         <span className="font-bold">{list.roomName}</span>
                     </div>
-                    <div className="setting px-1 py-2">
-                        <span><FontAwesomeIcon icon={faEllipsisVertical} /></span>
+                    <div className="setting px-1 text-primary">
+                        <span className="cursor-pointer hover:animate-pulse px-2 py-2"><FontAwesomeIcon icon={faPhoneVolume} /></span>
+                        <span className="cursor-pointer hover:animate-pulse px-2 py-2 mx-3"><FontAwesomeIcon icon={faVideo} /></span>
+                        <span className="cursor-pointer hover:animate-pulse px-2 py-2"><FontAwesomeIcon icon={faInfoCircle} /></span>
                     </div>
             </div>
             ))}
