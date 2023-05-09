@@ -8,6 +8,7 @@ import { ApiServer } from "../../App";
 function ChatPage({ socket }) {
     const Api = useContext(ApiServer)
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
+    
     const [roomChoosing, setRoomChoosing] = useState([])
 
     useEffect(() => {

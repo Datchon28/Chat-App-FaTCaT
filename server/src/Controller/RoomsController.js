@@ -3,16 +3,19 @@ const Rooms = require('../module/Rooms')
 
 class RoomsController {
     
-    async detail(req, res) {
+    async detail(req, res, next) {
         try {
-            await Rooms.find({})
-            .then(data => res.send(data))
+            await Rooms.find({ $or: [ {"admin.id": req.body.admin} , {people: { $elemMatch: { "person.userName": req.body.person } }} ] })
+            .then(data => {
+                res.status(200).send(data)
+            })
         } catch (error) {
-            console.log(error);
+            res.status(500).send(error);
+            next()
         }
     }
 
-    async roomChoose(req, res) {
+    async roomChoose(req, res, next) {
         try {
             await Rooms.find({ _id: req.body.id })
             .then(result => {
@@ -20,11 +23,11 @@ class RoomsController {
             })
         } catch (error) {
             res.status(500).send(error)
+            next()
         }
     }
 
-    async getRoomChoose(req,res) {
-        const id = req.body.id
+    async getRoomChoose(req, res, next) {
         try {
             await Rooms.find({ _id: req.body.id })
             .then(result => {
@@ -32,11 +35,12 @@ class RoomsController {
                 res.status(200).send(result)
             })
         } catch (error) {
-            
+            res.status(500).send(error)
+            next()
         }
     }
 
-    async saveMessage(req, res) {
+    async saveMessage(req, res, next) {
         try {
             
             const current = await Rooms.findByIdAndUpdate( String(req.body.id) , {
@@ -54,18 +58,15 @@ class RoomsController {
             
         } catch (error) {
             res.status(500).send(error)
+            next()
         }
     }
 
-    async addRoom(req, res) {
+    async addRoom(req, res, next) {
         const newRoom = Rooms({
             roomName: req.body.roomName,
             admin:  req.body.admin,
-            people: [
-                {
-                    person: req.body.person
-                }
-            ],
+            people: req.body.person,
             messages: [
                 {
                     userName: req.body.userName,
@@ -80,6 +81,7 @@ class RoomsController {
             
         } catch (error) {
             res.status(500).send(error)
+            next()
         }
     }
 }

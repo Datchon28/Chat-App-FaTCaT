@@ -23,7 +23,8 @@ const Rooms = new Schema({
     messages: [
         {
             userName: { type: String },
-            text: { type: String }
+            text: { type: String },
+            createAt: {type: Date, default: Date.now}
         }
      ],
     createAt: { type: Date, default: Date.now }

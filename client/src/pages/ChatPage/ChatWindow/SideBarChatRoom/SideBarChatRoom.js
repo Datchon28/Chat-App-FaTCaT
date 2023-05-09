@@ -19,31 +19,31 @@ function SideBarChatRoom({ data }) {
     return ( 
         <>
         {data.map((info, index) => (
-            <div className="extra px-2 w-80 bg-color-content h-screen text-white flex flex-col items-center" key={index}>
+            <div className="extra px-2 w-80 bg-color-content h-screen dark:bg-dark-color-content text-color-title dark:text-white flex flex-col items-center" key={index}>
                 <div className="flex flex-col items-center w-full">
                     <img className=" w-24 rounded-full object-cover h-24 mx-auto mt-4" alt="avatar" src="https://cdn.pixabay.com/photo/2022/04/20/01/23/wedding-7144049__480.jpg" />
                     <h2 className="name-user my-2">{info.roomName}</h2>
                     
                     <div className="flex justify-between items-start mt-2 w-full px-2">
                         <div className=" cursor-pointer text-sm mx-1 flex flex-col items-center justify-center">
-                            <button className="w-9 h-9 mb-1 bg-slate-700 rounded-full"><FontAwesomeIcon icon={faUser} /></button>
+                            <button className="w-9 h-9 text-white mb-1 bg-slate-700 rounded-full"><FontAwesomeIcon icon={faUser} /></button>
                             <span className="text-center">Thanh vien</span>
                            
                         </div>
 
                         <div className=" cursor-pointer text-sm mx-1 flex flex-col items-center justify-center" onClick={handleAlert}>
-                            <button className='w-9 h-9 mb-1 bg-slate-700 rounded-full'><FontAwesomeIcon icon={alert ? faBell : faBellSlash} /></button>
+                            <button className='w-9 h-9 text-white mb-1 bg-slate-700 rounded-full'><FontAwesomeIcon icon={alert ? faBell : faBellSlash} /></button>
                             <span className=" text-center">Notice: {alert ? 'ON' : 'OFF'}</span>
                         </div>
 
                         <div className=" cursor-pointer text-sm mx-1 flex flex-col items-center justify-center" onClick={handleSearchMessage}>
-                            <button  className="w-9 h-9 mb-1 bg-slate-700 rounded-full"><FontAwesomeIcon icon={faSearch} /></button>
+                            <button  className="w-9 h-9 text-white mb-1 bg-slate-700 rounded-full"><FontAwesomeIcon icon={faSearch} /></button>
                             <span className=" text-center">Tim Kiem</span>
                         </div>
                     </div>
 
                     <div className={`w-full ${searchMessage ? 'h-7' : 'h-0'} mt-3 mb-3`}>
-                        <input className={`${searchMessage === false ? 'w-0 h-0' : 'w-full h-full'} rounded-md transition-all text-black px-2`} placeholder="Search Messages" />
+                        <input className={`${searchMessage === false ? 'w-0 h-0' : 'w-full h-full'} rounded-md transition-all text-black px-2 bg-color-sidebar `} placeholder="Search Messages" />
                     </div>
                 </div>
 

@@ -37,10 +37,10 @@ function Search() {
     }
 
     return (  
-    <div className='relative text-white mb-3' >
-        <span className="absolute top-3 pl-2.5 left-0"><FontAwesomeIcon icon={faSearch} /></span>
-        <input className='w-full py-3 pr-1 pl-9 rounded-xl bg-color-search-user' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Search user" />
-        {loading === false ? <span className="absolute top-3 mr-2.5 right-0 cursor-pointer" onClick={handleDeleteValue}><FontAwesomeIcon icon={faClose} /></span>
+    <div className='relative text-color-title mb-3' >
+        <span className="absolute top-3 pl-2.5 left-0 text-color-search-icon"><FontAwesomeIcon icon={faSearch} /></span>
+        <input className='w-full py-3 pr-1 pl-9 rounded-xl outline outline-1 outline-slate-400 bg-color-search-user dark:bg-dark-color-input' value={searchValue} onChange={(e) => setSearchValue(e.target.value)} placeholder="Search user" />
+        {loading === false ? <span className="absolute top-3 font-semibold mr-2.5 right-0 cursor-pointer text-color-search-icon hover:text-black" onClick={handleDeleteValue}><FontAwesomeIcon icon={faClose} /></span>
         : <span className="absolute top-3 mr-2.5 right-0 cursor-pointer animate-spin" onClick={handleDeleteValue}><FontAwesomeIcon icon={faSpinner} /></span>}
         
         <div className={`mt-2 absolute w-full h-fit rounded-xl ${result.length <= 0 && 'hidden'}`}>

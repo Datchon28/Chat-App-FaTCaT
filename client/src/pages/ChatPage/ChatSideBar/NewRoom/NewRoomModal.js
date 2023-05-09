@@ -1,36 +1,57 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faPlus } from "@fortawesome/free-solid-svg-icons";
+import Modal from "../../../../components/Modal/Modal";
+import { useState } from "react";
 
-function NewRoomModal({ onClick, createNewRoom, onChangeRoomName, roomName, onChangeMember, member }) {
-  
+function NewRoomModal({ onClick, createNewRoom, onChangeRoomName, roomName, onChangeMember, member, AddMemberBtn, list, handleDeleteMem }) {
+    
+
     return (
-        <div className="modal fixed top-0 left-0 w-full h-full z-30 ">
-            <div className='modal2 bg-color-sidebar  shadow-lg shadow-slate-500 rounded-md px-4 py-3 absolute top-1/2 left-1/2 -translate-x-2/4 -translate-y-2/4 max-w-modal-new-room w-full max-h-60 h-full'> 
-                <div className="relative w-full h-full">
-                    <button className="absolute right-0 px-2 py-1 ">
-                        <span className=" hover:text-black"><FontAwesomeIcon icon={faClose} /></span>
-                    </button>
+        <Modal maxWidth={'max-w-modal-new-room'} maxHeight={'max-h-96'}>
+            <div className='bg-color-sidebar dark:bg-dark-color-sidebar  shadow-lg shadow-slate-500 rounded-md px-4 py-3 w-full h-full border border-solid border-slate-500'> 
+                <div className="info-room flex flex-col">
+                    <label className="flex flex-col mt-3">
+                        <span className=" ml-1">Room Name</span>
+                        <input className="mt-1 pl-2 h-8 rounded-md text-black" onChange={onChangeRoomName} value={roomName} placeholder="Name Your Room"/>
+                    </label>
 
-                    <div className="info-room flex flex-col">
-                        <label className="flex flex-col mt-3">
-                            <span>Room Name</span>
-                            <input className="mt-1 pl-2 h-8 rounded-md text-black" onChange={onChangeRoomName} value={roomName} placeholder="Name Your Room"/>
-                        </label>
+                    <label className="flex flex-col mt-3">
+                        <span className=" ml-1">Add People</span>
+                        <div className='flex w-full justify-between items-center mt-1'>
+                            <input className=" w-11/12 mt-1 pl-2 h-8 rounded-md text-black pr-8" onChange={onChangeMember} value={member} placeholder="Add Some People" />
+                            
+                            <button className=" ml-4 bg-sky-600 px-2.5 py-1.5 rounded-md" onClick={AddMemberBtn}>
+                                <span className=" text-sm"><FontAwesomeIcon icon={faPlus} /></span>
+                            </button>
+                        </div>
+                    </label>
+                </div>
 
-                        <label className="flex flex-col mt-3">
-                            <span>Add People</span>
-                            <input className="mt-1 pl-2 h-8 rounded-md text-black" onChange={onChangeMember} value={member} placeholder="Add Some People" />
-                        </label>
-                    </div>
+                <div className="list-member-add mt-6 border-t border-solid">
+                    <h3 className=" ml-1">Add Member</h3>
+                    <ul className="flex items-center flex-wrap">
+                        {
+                            list.map((li, index) => (
+                                <li id={li} key={index} className=" ml-2 w-fit bg-slate-500 px-1 h-9 flex items-center justify-between rounded-md">
+                                    <span id={li} className=" text-lg">{li}</span>
+                                    <button id={li} onClick={(e) => handleDeleteMem(e.target.id)} className=" text-sm ml-1 px-1.5 ">
+                                        <span id={li} className="text-lg text-center text-black font-bold w-full h-full">x</span> 
+                                    </button>,
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
 
-                    <div className="btn-control absolute bottom-0 right-0">
-                        <button onClick={createNewRoom} className="cancle px-3 py-2 mr-2 rounded-md bg-sky-600 hover:bg-sky-500 transition-colors">Create</button>
-                        <button onClick={onClick} className='confirm px-3 py-2 rounded-md'>Cancle</button>
-                    </div>
+                <div className="btn-control absolute bottom-0 right-0 mb-3">
+                    <button onClick={createNewRoom} className="cancle px-3 py-2 mr-2 rounded-md bg-sky-600 hover:bg-sky-500 transition-colors">Create</button>
+                    <button onClick={onClick} className='confirm px-3 py-2 rounded-md'>Cancle</button>
                 </div>
             </div>
-        </div>
-    
+            
+
+        </Modal>
+        
     );
 }
 

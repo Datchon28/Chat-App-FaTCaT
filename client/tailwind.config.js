@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: 'class',
   important: true,
   theme: {
     extend: {
@@ -21,7 +24,7 @@ module.exports = {
         'margin-send-btn' : '30px'
       },
       padding: {
-        'padding-send-btn' : '10px',
+        'padding-send-btn' : '8.5px',
         'fixed-off-notice-icon': '7px'
       },
 
@@ -37,20 +40,45 @@ module.exports = {
         
       },
       borderColor : {
-        'color-chat-window': '#444',
+        'dark-color-chat-window': '#444',
+        // Light theme
+        'color-chat-window': '#d5d5d5',
+       
       },
 
       backgroundColor: {
-        'color-sidebar': '#20232b',
-        'color-content': '#1d1e24',
-        'color-input': '#16171b',
-        'color-none-seen': '#1a1e23' ,
-        'color-seen': '#333' ,
-        'color-chat': '#b785f5',
-        'color-search-user': '#16171b',
-        'color-modal-new-room': '#1a3250',
+        'color-primary' : '#0147ff',
+        'dark-color-primary': 'rgb(2 132 199 / 1)',
         'modal' : 'rgba(0,0,0,0.5)',
+
+        // Dark Theme
+        'dark-color-sidebar': '#20232b', //20232b
+        'dark-color-content': '#1d1e24', //1d1e24
+        'dark-color-input': '#16171b',
+        'dark-color-none-seen': '#1a1e23' ,
+        'dark-color-seen': '#364952' ,
+        'dark-color-chat': '#b785f5',
+        'dark-color-search-user': '#16171b',
+        'color-modal-new-room': '#1a3250',
         'list-references' : 'rgba(0,0,0,0.1)',
+        
+       
+        // Light Theme
+        'color-sidebar': '#f5f7fb',
+        'color-content': '#fff',
+        'color-none-seen': '#fff', //#1a1e23
+        'color-seen': '#dadada', //364952
+        'color-search-user': '#fff',
+        
+      },
+
+      textColor: {
+        'primary': '#0147ff',
+        // Light THeme: 
+        'color-title': '#000',
+        'color-message': '#fff',
+        'color-lastmessage': '#777',
+        'color-search-icon': '#838383'
       },
 
       top: {
@@ -68,3 +96,9 @@ module.exports = {
   },
   plugins: [],
 }
+
+
+// #35aef3 #a44cdc #06d5fe #fa09e2
+/**
+ * background-image: linear-gradient(to left , #a44cdc  ,#35aef3 );
+ */

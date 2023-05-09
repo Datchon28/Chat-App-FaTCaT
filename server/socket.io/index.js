@@ -2,10 +2,7 @@
 function socketIo (io) {
     io.on("connection", (socket) => {
         console.log('User connected');
-        socket.on('user-login', (user) => {
-          
-        })
-      
+        
         socket.on('chatValue', (value) => {
           io.emit('chat-from-user', value)
       
@@ -13,10 +10,6 @@ function socketIo (io) {
       
         socket.on('typing-action', (data) => {
             io.emit('user-typing', data)
-        })
-      
-        socket.on('message-user', (data) => {
-          console.log(data);
         })
       
         socket.on('room-choose' , (data) => {

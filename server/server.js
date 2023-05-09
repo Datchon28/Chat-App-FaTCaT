@@ -6,6 +6,7 @@ const app = express()
 const { createServer } = require('http')
 const http = createServer(app)
 const { Server } = require('socket.io')
+const socketServer = require('./socket.io')
 
 // Enviroment
 require('dotenv').config()
@@ -26,7 +27,6 @@ app.use(cors())
 db.connect(process.env.MONGO_URI)
 
 // Connected Socket IO 
-const socketServer = require('./socket.io')
 const io = new Server(http, {
   cors: {
     origin: '*'

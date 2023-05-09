@@ -11,10 +11,10 @@ export const ApiServer = createContext()
 const socket = io(Api, { })
 
 function App() {
-  
+
   return (
     <BrowserRouter>
-      <div className="">
+      <div>
         <ApiServer.Provider value={Api}>
           <Routes>
               <Route path="/" element={<Home socket={socket}/>}></Route>

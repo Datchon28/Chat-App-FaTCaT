@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/logo192.png" />
@@ -40,4 +40,14 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+
+  <script>
+      var theme = localStorage.getItem('theme')
+      const html = document.querySelector("html")
+      if(!theme) {
+        html.classList.add("light") 
+      }else {
+        html.classList.add(theme)      
+      }
+  </script>
 </html>
