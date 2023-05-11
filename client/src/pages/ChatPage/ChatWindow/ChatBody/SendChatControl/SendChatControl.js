@@ -16,11 +16,11 @@ function SendChatControl({ socket, roomChoosing, Api }) {
     
     const ChatCurrentListenChange = (e) => {
         const value = e.target.value
-        if(value.length > 0) {
-            socket.emit('typing-action', { userName, typing :true })
-        }else {
-            socket.emit('typing-action', { userName, typing :false })
-        }
+        // if(value.length > 0) {
+        //     socket.emit('typing-action', { userName, typing :true })
+        // }else {
+        //     socket.emit('typing-action', { userName, typing :false })
+        // }
         setText(value)
     }
 

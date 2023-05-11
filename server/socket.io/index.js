@@ -8,9 +8,9 @@ function socketIo (io) {
       
         })
       
-        socket.on('typing-action', (data) => {
-            io.emit('user-typing', data)
-        })
+        // socket.on('typing-action', (data) => {
+        //     io.emit('user-typing', data)
+        // })
       
         // socket.on('room-choose' , (data) => {
         //   io.emit('id-room-choosing', (data));
