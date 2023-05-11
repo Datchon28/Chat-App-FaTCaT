@@ -1,39 +1,37 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useState } from "react";
 import ChatSideBar from "./ChatSideBar/ChatSideBar";
-import ChatWindow from "./ChatWindow/ChatWindow";
-import axios from "axios";
-import { Navigate } from "react-router-dom";
-import { ApiServer } from "../../App";
+import { Navigate, useLocation } from "react-router-dom";
 
-function ChatPage({ socket }) {
-    const Api = useContext(ApiServer)
+function ChatPage({ socket, children }) {
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
-    
-    const [roomChoosing, setRoomChoosing] = useState([])
+    const location = useLocation()
+    const [openChatRoom, setOpenChatRoom] = useState(false)
 
     useEffect(() => {
-       const fetchData = async() => {
-           try {
-                await socket.on('id-room-choosing' , (idRoom) => {
-                    axios.get(`${Api}/rooms/room_choose?id=${idRoom.id}`)
-                    .then(result => {
-                        setRoomChoosing(result.data);
-                    })
-                })
-           } catch (error) {
-                console.log(error);
-           }
+        if(location.pathname === '/chat') {
+            setOpenChatRoom(false)
+        }else {
+            setOpenChatRoom(true)
         }
-       fetchData()  
-    },[socket])
-
+    }, [location])
 
     return (
        <>
         {user ? 
-            <div className='wrapper'>
-                <ChatSideBar socket={socket} />
-                <ChatWindow socket={socket} roomChoosing={roomChoosing} />
+            <div className='wrapper flex justify-between'>
+                <div className={`max-sm:w-full dark:bg-dark-color-sidebar ${openChatRoom  && 'max-sm:w-0  overflow-hidden duration-300'} `}>
+                    <ChatSideBar socket={socket} />
+                </div>
+                {children ? 
+                    <div className="flex-1 bg-white dark:bg-dark-color-content">
+                        {children}
+                    </div>
+                    : 
+                    <div className=" flex-1 bg-white dark:bg-dark-color-content max-sm:hidden">
+                        <span>Helo</span>
+                    </div>
+                }
+                
                 
             </div>
         : <Navigate to='/' />}

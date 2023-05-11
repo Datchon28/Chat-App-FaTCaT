@@ -28,3 +28,12 @@
     background-color: #1d1e24;
 }
 
+@media (max-width: 740px) {
+    .list-chat::-webkit-scrollbar-track {
+        background-color: #fff;
+    }
+
+    .dark .list-chat::-webkit-scrollbar-track {
+        background-color: #1d1e24;
+    }
+}

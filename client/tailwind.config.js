@@ -61,9 +61,11 @@ module.exports = {
         'dark-color-search-user': '#16171b',
         'color-modal-new-room': '#1a3250',
         'list-references' : 'rgba(0,0,0,0.1)',
+        'dark-color-message': '#444',
         
-       
+        
         // Light Theme
+        'color-message': '#f0f0f0',
         'color-sidebar': '#f5f7fb',
         'color-content': '#fff',
         'color-none-seen': '#fff', //#1a1e23
@@ -74,6 +76,10 @@ module.exports = {
 
       textColor: {
         'primary': '#0f75ff',
+        // Dark Theme:
+        'dark-color-primary': 'rgb(2 132 199 / 1)',
+
+
         // Light THeme: 
         'color-title': '#000',
         'color-message': '#fff',

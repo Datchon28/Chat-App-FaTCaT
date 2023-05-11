@@ -65,7 +65,7 @@ function Login({ ApiUrl }) {
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
             <div>
-                <label htmlFor="email-address" className="sr-only">
+                <label htmlFor="user-name" className="sr-only">
                   Username
                 </label>
                 <input

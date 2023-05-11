@@ -19,25 +19,25 @@ function SideBarChatRoom({ data }) {
     return ( 
         <>
         {data.map((info, index) => (
-            <div className="extra px-2 w-80 bg-color-content h-screen dark:bg-dark-color-content text-color-title dark:text-white flex flex-col items-center" key={index}>
+            <div className=" max-sm:hidden extra px-2 w-80 bg-color-content h-screen dark:bg-dark-color-content text-color-title dark:text-white flex flex-col items-center" key={index}>
                 <div className="flex flex-col items-center w-full">
                     <img className=" w-24 rounded-full object-cover h-24 mx-auto mt-4" alt="avatar" src="https://cdn.pixabay.com/photo/2022/04/20/01/23/wedding-7144049__480.jpg" />
                     <h2 className="name-user my-2">{info.roomName}</h2>
                     
                     <div className="flex justify-between items-start mt-2 w-full px-2">
                         <div className=" cursor-pointer text-sm mx-1 flex flex-col items-center justify-center">
-                            <button className="w-9 h-9 text-white mb-1 bg-slate-700 rounded-full"><FontAwesomeIcon icon={faUser} /></button>
+                            <button className="w-9 h-9 text-white mb-1 bg-slate-700 dark:bg-dark-color-message rounded-full"><FontAwesomeIcon icon={faUser} /></button>
                             <span className="text-center">Thanh vien</span>
                            
                         </div>
 
                         <div className=" cursor-pointer text-sm mx-1 flex flex-col items-center justify-center" onClick={handleAlert}>
-                            <button className='w-9 h-9 text-white mb-1 bg-slate-700 rounded-full'><FontAwesomeIcon icon={alert ? faBell : faBellSlash} /></button>
+                            <button className='w-9 h-9 text-white mb-1 bg-slate-700 dark:bg-dark-color-message rounded-full'><FontAwesomeIcon icon={alert ? faBell : faBellSlash} /></button>
                             <span className=" text-center">Notice: {alert ? 'ON' : 'OFF'}</span>
                         </div>
 
                         <div className=" cursor-pointer text-sm mx-1 flex flex-col items-center justify-center" onClick={handleSearchMessage}>
-                            <button  className="w-9 h-9 text-white mb-1 bg-slate-700 rounded-full"><FontAwesomeIcon icon={faSearch} /></button>
+                            <button  className="w-9 h-9 text-white mb-1 bg-slate-700 dark:bg-dark-color-message rounded-full"><FontAwesomeIcon icon={faSearch} /></button>
                             <span className=" text-center">Tim Kiem</span>
                         </div>
                     </div>
@@ -49,15 +49,15 @@ function SideBarChatRoom({ data }) {
 
                 <div className="list-option w-full text-md ">
                     <ul>
-                        <li className="flex justify-between items-center my-2 py-2 bg-cyan-700 px-2"> 
+                        <li className="flex justify-between items-center my-2 py-2 px-2"> 
                             <span>Information about the chat </span>
                             <span><FontAwesomeIcon icon={faArrowUp} /></span>
                         </li>
-                        <li className="flex justify-between items-center my-2 py-2 bg-cyan-700 px-2"> 
+                        <li className="flex justify-between items-center my-2 py-2 px-2"> 
                             <span>Customize chat</span>
                             <span><FontAwesomeIcon icon={faArrowUp} /></span>
                         </li>
-                        <li className="flex justify-between items-center my-2 py-2 bg-cyan-700 px-2"> 
+                        <li className="flex justify-between items-center my-2 py-2 px-2"> 
                             <span>Media files, files and links</span>
                             <span><FontAwesomeIcon icon={faArrowUp} /></span>
                         </li>
@@ -79,7 +79,7 @@ function SideBarChatRoom({ data }) {
                                 </div>
                         </div>
 
-                        <li className="flex justify-between items-center my-2 py-2 bg-cyan-700 px-2">
+                        <li className="flex justify-between items-center my-2 py-2 px-2">
                             <span>Privacy and support</span>
                             <span><FontAwesomeIcon icon={faArrowUp} /></span>
                         </li>

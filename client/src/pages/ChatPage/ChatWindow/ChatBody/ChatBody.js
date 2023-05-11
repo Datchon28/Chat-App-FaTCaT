@@ -17,7 +17,7 @@ function ChatBody({ socket, roomChoosing }) {
 
     return (
         <>  
-            <ChatContent Api={Api}  idRoomChoosing={roomChoosing.length > 0 && roomChoosing[0]._id} socket={socket} message={message}  />
+            <ChatContent Api={Api} socket={socket} message={message}  />
             <SendChatControl socket={socket} Api={Api} roomChoosing={roomChoosing} />
             
         </>
