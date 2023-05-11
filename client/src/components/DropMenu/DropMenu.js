@@ -5,6 +5,7 @@ function DropMenu({ children, content }) {
     return (  
         <>
             <Tippy
+                placement="right-end"
                 hideOnClick={true}
                 interactive
                 trigger="click"

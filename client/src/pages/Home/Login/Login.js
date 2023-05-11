@@ -1,4 +1,4 @@
-import { useEffect, useState, } from 'react'
+import { useContext, useEffect, useState, } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import imgHome from '../../../assets/backdrop_welcome.jpg'
@@ -6,8 +6,10 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../../../assets/Logo.png'
+import { ApiServer } from '../../../App';
 
-function Login({ ApiUrl }) {
+function Login() {
+  const Api = useContext(ApiServer)
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +22,7 @@ function Login({ ApiUrl }) {
     setLoading(true)
     
     try {
-      await axios.post('https://chat-app-fatcat.onrender.com/login', {
+      await axios.post(`${Api}/login`, {
         userName: userName,
         password: password
       })

@@ -7,9 +7,7 @@ import axios from "axios";
 import NewRoomModal from "./NewRoom/NewRoomModal";
 import ListChat from "./ListChat/ListChat";
 import DropMenu from "../../../components/DropMenu/DropMenu";
-import References from "./References/References";
 import { ApiServer } from "../../../App";
-import { useParams } from 'react-router-dom'
 import MenuSidebarMobile from "./OnMobile/MenuSidebarMobile/MenuSidebarMobile";
 
 function ChatSideBar({ socket }) {
@@ -118,19 +116,44 @@ function ChatSideBar({ socket }) {
 
     return (
         <div className={`wrapper relative flex justify-center flex-col bg-color-sidebar dark:bg-dark-color-sidebar text-color-title dark:text-white w-60 h-screen py-5 px-4 max-sm:w-full translate-x-0
-           transition-transform duration-200 ${openChatRoom && 'transition-transform max-sm:-translate-x-full duration-200'}
+           transition-transform duration-300 ${openChatRoom && 'transition-transform max-sm:-translate-x-full duration-300'}
         `} >
-           <div  className=" mb-3 mt-9 h-24 max-sm:mt-0 max-sm:h-32">
+           <div  className=" mb-1 mt-9 h-28 max-sm:mt-0 max-sm:h-32">
+                <div className="h-14 flex items-start justify-between mb-2">
+                    <DropMenu content={
+                            <ul className=" w-auto h-auto shadow-sm dark:shadow-md border border-solid border-slate-500 
+                            shadow-slate-400 dark:shadow-black dark:bg-dark-color-sidebar rounded-lg text-md">
+                                <li onClick={() => navigate('/account')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Account</li>
+                                <li onClick={() => navigate('/setting')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Setting</li>
+                                <li className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-2 my-1 font-semibold rounded-b-md">
+                                    <button className='' onClick={handleSignOut}>
+                                        <span className=" text-center pt-1 mr-2 text-lg"><FontAwesomeIcon icon={faSignOut} /></span>
+                                        Sign Out
+                                    </button>
+                                </li>
+                                
+                            </ul>
+                    }>
+                            <div className='user flex items-center cursor-default' onClick={() => setMenuUser(!menuUser)}>
+                                <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
+                                <span className=' text-lg font-bold '>{currentUser && currentUser.userName}</span>
+                            </div>
+                        </DropMenu>
+
+                        {/* <input onChange={ChangeImage} type='file'  className='w-12 mr-3 rounded-full object-cover' /> */}
+                        
+                </div>     
+
                 <span onClick={() => setOpenMenuMobile(!openMenuMobile)} className=" hidden max-sm:inline-block max-sm:pl-2 max-sm:pr-4 max-sm:pb-3 max-sm:text-base"><FontAwesomeIcon icon={faList} /></span>
-                <h1 className=" text-3xl text-primary font-bold mb-3 px-2 dark:text-white">Chat</h1>
                 <Search />
            </div>
            
-           {/* {openMenuMobile && <div onClick={() => setOpenMenuMobile(!openMenuMobile)} className={`w-full h-full fixed top-0 left-0 bg-modal`}>
+           {openMenuMobile && <div onClick={() => setOpenMenuMobile(!openMenuMobile)} className={`w-full h-full fixed top-0 left-0 bg-modal`}>
                 <MenuSidebarMobile  />
-           </div>} */}
+           </div>}
             
             <div className='chat-list flex-1 h-height-parent-list-chat-sidebar'>
+                
                 <div className="h-12">
                     <button className="w-full rounded-md text-center px-1 py-2 bg-color-primary dark:bg-dark-color-primary text-white mt-2 cursor-pointer hover:brightness-110 transition-colors duration-100" onClick={handleOpenCreateRoom}>New Room</button>
                 </div>
@@ -158,35 +181,7 @@ function ChatSideBar({ socket }) {
                 }
                 
                 <ListChat socket={socket} room={room} />
-
             </div>
-
-            <div className="h-28 flex items-end justify-between">
-               <DropMenu content={
-                    <ul className=" w-auto h-auto shadow-sm dark:shadow-md
-                     shadow-slate-400 dark:shadow-black rounded-lg text-md">
-                        <li onClick={() => navigate('/accounts&settings')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-3 my-1 font-semibold">Account & Setting</li>
-                        <li className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-2 my-1 font-semibold rounded-b-md">
-                            <button className='' onClick={handleSignOut}>
-                                <span className=" text-center pt-1 mr-2 text-lg"><FontAwesomeIcon icon={faSignOut} /></span>
-                                Sign Out
-                            </button>
-                        </li>
-                        
-                    </ul>
-               }>
-                    <div className='user flex items-center cursor-default' onClick={() => setMenuUser(!menuUser)}>
-                        <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
-                        <span className=' text-lg font-bold '>{currentUser && currentUser.userName}</span>
-                    </div>
-                </DropMenu>
-
-                {openReferences && <References onClick={() => setOpenReferences(!openReferences)} />}
-
-                {/* <input onChange={ChangeImage} type='file'  className='w-12 mr-3 rounded-full object-cover' /> */}
-                
-            </div>
-            
         </div>
     );
 }

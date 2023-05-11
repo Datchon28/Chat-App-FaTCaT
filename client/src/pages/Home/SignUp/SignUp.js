@@ -1,4 +1,4 @@
-import { useState, } from 'react'
+import { useContext, useState, } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import imgHome from '../../../assets/backdrop_welcome.jpg'
@@ -7,8 +7,10 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { ApiServer } from '../../../App';
 
-function SignUp({ ApiUrl }) {
+function SignUp() {
+  const Api = useContext(ApiServer)
   const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -106,7 +108,7 @@ function SignUp({ ApiUrl }) {
     e.preventDefault();
     setLoading(true)
     if((ruleUserName && ruleEmail && ruleFirstName && ruleLastName && rulePassword) === false && acceptCondition) {
-        await axios.post('https://chat-app-fatcat.onrender.com/signup', {
+        await axios.post(`${Api}/signup`, {
         userName: userName,
         firstName: firstName,
         lastName: lastName, 

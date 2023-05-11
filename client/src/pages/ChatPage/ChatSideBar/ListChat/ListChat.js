@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 function ListChat({ room ,socket }) {
     const [idRoomChoosing, setIdRoomChoosing] = useState(undefined)
-    const [roomChoosing, setRoomChoosing] = useState(false)
     const [seenChat, setSeenChat] = useState(false)
 
     const navigate = useNavigate()

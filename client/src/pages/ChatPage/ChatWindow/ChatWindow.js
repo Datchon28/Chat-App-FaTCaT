@@ -31,7 +31,7 @@ function ChatWindow({ socket }) {
     return ( 
         <div className="main flex">
             <div className={`wrapper flex-1 bg-color-sidebar dark:bg-dark-color-sidebar text-white h-screen overflow-hidden border border-b-0 border-solid border-color-chat-window dark:border-dark-color-chat-window
-             max-sm:ml-0 max-sm:w-full 
+             max-sm:ml-0 max-sm:w-full  
             `}>
                 <Navbar roomChoosing={roomChoosing} />
                 <ChatBody roomChoosing={roomChoosing} socket={socket} />

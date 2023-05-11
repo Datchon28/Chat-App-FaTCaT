@@ -1,38 +1,26 @@
-import { useEffect, useState } from "react";
 import ChatSideBar from "./ChatSideBar/ChatSideBar";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function ChatPage({ socket, children }) {
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
-    const location = useLocation()
-    const [openChatRoom, setOpenChatRoom] = useState(false)
-
-    useEffect(() => {
-        if(location.pathname === '/chat') {
-            setOpenChatRoom(false)
-        }else {
-            setOpenChatRoom(true)
-        }
-    }, [location])
 
     return (
        <>
         {user ? 
             <div className='wrapper flex justify-between'>
-                <div className={`${openChatRoom  ? 'max-sm:w-0 overflow-hidden duration-300' : 'max-sm:w-full'} dark:bg-dark-color-sidebar `}>
+                <div className={` max-sm:w-full dark:bg-dark-color-sidebar `}>
                     <ChatSideBar socket={socket} />
                 </div>
                 {children ? 
-                    <div className="flex-1 bg-white dark:bg-dark-color-content">
+                    <div className="flex-1 bg-white dark:bg-dark-color-content max-sm:absolute left-0 top-0 right-0 bottom-0
+                    ">
                         {children}
                     </div>
                     : 
-                    <div className=" flex-1 bg-white dark:bg-dark-color-content max-sm:hidden">
-                        <span>Helo</span>
+                    <div className=" flex-1 bg-white dark:bg-dark-color-content text-center relative max-sm:hidden -z-10 ">
+                        <span className=" hover:animate-bounce absolute top-1/2 left-1/2 text-3xl -translate-x-1/2 -translate-y-1/2 dark:text-slate-300">Welcome to Fat Cat <br></br>Please select any text message</span>
                     </div>
                 }
-                
-                
             </div>
         : <Navigate to='/' />}
        </>

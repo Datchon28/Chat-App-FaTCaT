@@ -17,7 +17,7 @@ module.exports = {
       },
       maxHeight : {
         'navbar' : '90px',
-        'height-child-list-chat-sidebar': 'calc(100% - 96px)',
+        'height-child-list-chat-sidebar': 'calc(100% - 160px)',
       },
       margin: {
         'navbar' : '90px',
