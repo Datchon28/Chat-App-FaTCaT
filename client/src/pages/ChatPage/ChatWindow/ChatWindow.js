@@ -12,7 +12,6 @@ function ChatWindow({ socket }) {
     const Api = useContext(ApiServer)
     const [roomChoosing, setRoomChoosing] = useState([])
     const param = useParams()
-    const location = useLocation()
 
     useEffect(() => {
         const fetchData = async() => {

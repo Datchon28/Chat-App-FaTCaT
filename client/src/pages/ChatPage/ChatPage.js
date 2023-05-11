@@ -19,7 +19,7 @@ function ChatPage({ socket, children }) {
        <>
         {user ? 
             <div className='wrapper flex justify-between'>
-                <div className={`max-sm:w-full dark:bg-dark-color-sidebar ${openChatRoom  && 'max-sm:w-0  overflow-hidden duration-300'} `}>
+                <div className={`${openChatRoom  ? 'max-sm:w-0 overflow-hidden duration-300' : 'max-sm:w-full'} dark:bg-dark-color-sidebar `}>
                     <ChatSideBar socket={socket} />
                 </div>
                 {children ? 
