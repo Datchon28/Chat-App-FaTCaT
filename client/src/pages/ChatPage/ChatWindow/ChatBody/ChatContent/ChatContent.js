@@ -73,15 +73,17 @@ function ChatContent({ Api, socket, message, }) {
                 
                 {
                     message.map((ms, index) => (
-                        <li key={index} id="user" className={`flex items-center ${currentUser.userName === ms.userName ? 'justify-end': 'justify-start'} text-color-title dark:text-white font-semibold mb-6 w-full py-1 px-1`} >
-                            <div className=" flex flex-col items-end ">
-                                <div className={`flex items-center ${currentUser.userName === ms.userName && 'flex-row-reverse '}`}>
-                                <img alt="avatar" src='https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg' className='mb-2 mr-3 rounded-full w-9' />
-                                <span className=" text-sm font-semibold mr-2 ">{ms.userName}</span>
+                        <li key={index} id="user" className={`flex items-center ${currentUser.userName === ms.userName ? 'justify-end': 'justify-start mb-2'} text-color-title dark:text-white font-semibold w-full py-1 px-1`} >
+                            <div className=" flex  items-end ">
+                                <div id={index} className={`flex items-center ${currentUser.userName === ms.userName && 'hidden'}  `}>
+                                    <img alt="avatar" src='https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg' className='mb-2 mr-2 rounded-full w-8' />
                                 </div>
-                                <span className={` w-fit  rounded-xl max-w-xs py-2 text-center ${currentUser.userName === ms.userName ? 'bg-color-primary dark:bg-dark-color-primary mr-3 text-color-message  ' : 'bg-white text-black ml-3 '} px-4 py-1  `}>
-                                    {ms.text && ms.text}
-                                </span>
+                                <div className="flex flex-col items-start">
+                                    <span className={`text-sm font-semibold mr-2 px-2 pb-1 ${currentUser.userName === ms.userName && 'hidden'}`} >{ms.userName}</span>
+                                    <span className={`w-fit rounded-xl max-w-xs py-2 text-center ${currentUser.userName === ms.userName ? 'bg-color-primary dark:bg-dark-color-primary mr-1 text-color-message ' : 'dark:bg-dark-color-message bg-color-message  text-black dark:text-white'} px-4 py-1  `}>
+                                        {ms.text && ms.text}
+                                    </span>
+                                </div>
                             </div>
                         </li>
                     ))

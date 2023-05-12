@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Search from "./Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faList, faPlus, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from "axios";
 import NewRoomModal from "./NewRoom/NewRoomModal";
@@ -118,7 +118,7 @@ function ChatSideBar({ socket }) {
         <div className={`wrapper relative flex justify-center flex-col bg-color-sidebar dark:bg-dark-color-sidebar text-color-title dark:text-white w-60 h-screen py-5 px-4 max-sm:w-full translate-x-0
            transition-transform duration-300 ${openChatRoom && 'transition-transform max-sm:-translate-x-full duration-300'}
         `} >
-           <div  className=" mb-1 mt-9 h-28 max-sm:mt-0 max-sm:h-32">
+           <div  className=" mb-1 mt-9 max-sm:mt-0 h-32">
                 <div className="h-14 flex items-start justify-between mb-2">
                     <DropMenu content={
                             <ul className=" w-auto h-auto shadow-sm dark:shadow-md border border-solid border-slate-500 
@@ -144,7 +144,15 @@ function ChatSideBar({ socket }) {
                         
                 </div>     
 
-                <span onClick={() => setOpenMenuMobile(!openMenuMobile)} className=" hidden max-sm:inline-block max-sm:pl-2 max-sm:pr-4 max-sm:pb-3 max-sm:text-base"><FontAwesomeIcon icon={faList} /></span>
+                <div className="flex justify-between items-center mb-2">
+                    <span onClick={() => setOpenMenuMobile(!openMenuMobile)} className=" hidden max-sm:inline-block max-sm:px-3 max-sm:py-1.5 max-sm:text-base">
+                        <FontAwesomeIcon icon={faList} />
+                    </span>
+                    <h1 className="text-2xl font-semibold max-sm:pl-2 max-sm:pr-4 max-sm:pb-2">Chat</h1>
+                    <span className="hidden max-sm:inline-block max-sm:px-3 max-sm:py-1.5 max-sm:text-base hover:dark:bg-dark-color-primary rounded-full">
+                        <FontAwesomeIcon icon={faPlus} />
+                    </span>
+                </div>
                 <Search />
            </div>
            
@@ -152,11 +160,11 @@ function ChatSideBar({ socket }) {
                 <MenuSidebarMobile  />
            </div>}
             
-            <div className='chat-list flex-1 h-height-parent-list-chat-sidebar'>
+            <div className='chat-list flex-1 h-height-parent-list-chat-sidebar mt-4'>
                 
-                <div className="h-12">
+                {/* <div className="h-12">
                     <button className="w-full rounded-md text-center px-1 py-2 bg-color-primary dark:bg-dark-color-primary text-white mt-2 cursor-pointer hover:brightness-110 transition-colors duration-100" onClick={handleOpenCreateRoom}>New Room</button>
-                </div>
+                </div> */}
                 
                {openCreateNewRoom &&  
                     <div>

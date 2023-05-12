@@ -13,7 +13,7 @@ const ApiSocket = process.env.REACT_APP_SERVER_SOCKETIO
 const Api = process.env.REACT_APP_API
 export const ApiServer = createContext()
 
-const socket = io(ApiSocket, { })
+const socket = io('https://fatcat-chat-socketio.onrender.com', { })
 
 function App() {
 
