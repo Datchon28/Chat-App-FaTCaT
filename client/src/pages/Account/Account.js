@@ -1,12 +1,29 @@
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { Link } from 'react-router-dom'
 
 function Account() {
+    const ChangeImage = (e) => {
+        const reader = new FileReader()
+        reader.onload = () => {
+            const output = document.querySelector('#avatar')
+            output.src = reader.result
+        }
+        reader.readAsDataURL(e.target.files[0])
+    }
+
     return (
         <div className=' mt-4 dark:text-white px-3'>
             <form>
                 <div className="space-y-12">
                     <div className="border-b border-gray-900/10">
-                        <h2 className=" text-lg font-semibold leading-7 ">Account</h2>
+                        <div className='flex items-center'>
+                            <Link to='/chat'>
+                                <span className=' hover:dark:bg-dark-color-seen px-3 py-2 rounded-full'><FontAwesomeIcon icon={faArrowLeft} /></span>
+                            </Link>
+                            <h2 className=" text-3xl font-semibold leading-7 ml-3 ">ACCOUNT</h2>
+                        </div>
                         
                         {/* Avatar User */}
                         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
@@ -23,6 +40,7 @@ function Account() {
                                     Change
                                     </button>
                                 </div>
+                                {/* <input onChange={ChangeImage} type='file'  className='w-12 mr-3 rounded-full object-cover' /> */}
                             </div>
                         </div>
 

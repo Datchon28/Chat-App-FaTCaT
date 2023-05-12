@@ -11,7 +11,11 @@ function DropMenu({ children, content }) {
                 trigger="click"
                 render={attrs => (
                     <div tabIndex='-1' {...attrs}>
-                        {content}
+                        <ul className=" w-auto h-auto shadow-sm dark:shadow-md border border-solid border-slate-500 
+                            shadow-slate-400 dark:shadow-black dark:bg-dark-color-sidebar rounded-lg text-md">
+                            {content}
+
+                        </ul>
                     </div>
                 )}
             >

@@ -7,7 +7,7 @@ function NewRoomModal({ onClick, createNewRoom, onChangeRoomName, roomName, onCh
     
 
     return (
-        <Modal maxWidth={'max-w-modal-new-room'} maxHeight={'max-h-96'}>
+        <Modal maxWidth={'max-w-modal-new-room'} maxHeight={'max-h-modal-new-room'}>
             <div className='bg-color-sidebar dark:bg-dark-color-sidebar  shadow-lg shadow-slate-500 rounded-md px-4 py-3 w-full h-full border border-solid border-slate-500'> 
                 <div className="info-room flex flex-col">
                     <label className="flex flex-col mt-3">
@@ -20,7 +20,7 @@ function NewRoomModal({ onClick, createNewRoom, onChangeRoomName, roomName, onCh
                         <div className='flex w-full justify-between items-center mt-1'>
                             <input className=" w-11/12 mt-1 pl-2 h-8 rounded-md text-black pr-8" onChange={onChangeMember} value={member} placeholder="Add Some People" />
                             
-                            <button className=" ml-4 bg-sky-600 px-2.5 py-1.5 rounded-md" onClick={AddMemberBtn}>
+                            <button className=" ml-4 bg-color-primary dark:bg-dark-color-primary text-white px-2.5 py-1.5 rounded-md" onClick={AddMemberBtn}>
                                 <span className=" text-sm"><FontAwesomeIcon icon={faPlus} /></span>
                             </button>
                         </div>
@@ -44,7 +44,7 @@ function NewRoomModal({ onClick, createNewRoom, onChangeRoomName, roomName, onCh
                 </div>
 
                 <div className="btn-control absolute bottom-0 right-0 mb-3">
-                    <button onClick={createNewRoom} className="cancle px-3 py-2 mr-2 rounded-md bg-sky-600 hover:bg-sky-500 transition-colors">Create</button>
+                    <button onClick={createNewRoom} className="cancle px-3 py-2 mr-2 rounded-md bg-color-primary dark:bg-dark-color-primary text-white dark:text-black hover:bg-sky-500 transition-colors">Create</button>
                     <button onClick={onClick} className='confirm px-3 py-2 rounded-md'>Cancle</button>
                 </div>
             </div>

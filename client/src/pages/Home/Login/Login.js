@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState, } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { LockClosedIcon } from '@heroicons/react/20/solid'
-import imgHome from '../../../assets/backdrop_welcome.jpg'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -45,10 +44,9 @@ function Login() {
   };
 
     return (
-        <div className="flex min-h-full items-center justify-between h-screen">
-        <div className="w-full max-w-2xl mx-auto py-18 space-y-8">
+        <div className="w-full max-w-2xl mx-auto py-18 space-y-8 max-sm:absolute max-sm:top-1/2 max-sm:-translate-y-1/2 bg-white max-sm:max-w-sm max-sm:rounded-lg max-sm:px-7 max-sm:py-7 ">
           <div>
-          <h1 className=" text-center text-3xl font-bold tracking-tight text-gray-900">
+          <h1 className=" text-center text-3xl font-bold tracking-tight text-gray-900 max-sm:hidden">
               Welcome to FATCAT
             </h1>
             <img
@@ -147,10 +145,7 @@ function Login() {
             </div>
           </form>
         </div>
-        <div className=' max-w-width-form-login-signup w-full h-full'>
-          <img src={imgHome} className='h-full w-full object-cover' />
-        </div>
-      </div>
+        
     );
 }
 

@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faArrowUp, faBell, faBellSlash, faFile, faImage, faLink, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faArrowLeft, faArrowUp, faBell, faBellSlash, faFile, faImage, faLink, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-function SideBarChatRoom({ data }) {
+function SideBarChatRoom({ data, BackToChatContent }) {
     const [alert, setAlert] = useState(true)
     const [searchMessage, setSearchMessage] = useState(false)
     const [allMember, setAllMemeber] = useState(false)
@@ -19,9 +19,13 @@ function SideBarChatRoom({ data }) {
     return ( 
         <>
         {data.map((info, index) => (
-            <div className=" max-sm:hidden extra px-2 w-80 bg-color-content h-screen dark:bg-dark-color-content text-color-title dark:text-white flex flex-col items-center" key={index}>
+            <div className={` max-sm:w-full  extra px-2 w-80 bg-color-content h-screen dark:bg-dark-color-content text-color-title dark:text-white flex flex-col items-center`} key={index}>
                 <div className="flex flex-col items-center w-full">
-                    <img className=" w-24 rounded-full object-cover h-24 mx-auto mt-4" alt="avatar" src="https://cdn.pixabay.com/photo/2022/04/20/01/23/wedding-7144049__480.jpg" />
+                    <div className=" w-full relative">
+                        <span onClick={BackToChatContent} className=" hidden max-sm:block absolute top-4 left-4 px-3 py-2 -ml-3 hover:dark:bg-dark-color-seen rounded-full"><FontAwesomeIcon icon={faArrowLeft} /></span>
+                        <img className=" w-24 rounded-full object-cover h-24 mx-auto mt-4" alt="avatar" src="https://cdn.pixabay.com/photo/2022/04/20/01/23/wedding-7144049__480.jpg" />
+                    </div>
+
                     <h2 className="name-user my-2">{info.roomName}</h2>
                     
                     <div className="flex justify-between items-start mt-2 w-full px-2">

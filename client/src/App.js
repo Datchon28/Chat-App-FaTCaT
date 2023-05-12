@@ -8,12 +8,13 @@ import SignUp from "./pages/Home/SignUp/SignUp"
 import ChatWindow from "./pages/ChatPage/ChatWindow/ChatWindow"
 import Account from "./pages/Account/Account"
 import Setting from "./pages/Setting/Setting"
+import Login from "./pages/Home/Login/Login"
 
 const ApiSocket = process.env.REACT_APP_SERVER_SOCKETIO
 const Api = process.env.REACT_APP_API
 export const ApiServer = createContext()
 
-const socket = io('https://fatcat-chat-socketio.onrender.com', { })
+const socket = io(ApiSocket, { })
 
 function App() {
 
@@ -22,8 +23,8 @@ function App() {
       <div className="main max-h-screen h-full overflow-hidden">
         <ApiServer.Provider value={Api}>
             <Routes>
-                <Route path="/" element={<Home socket={socket}/>}></Route>
-                <Route path="/signup" element={<SignUp socket={socket}/>}></Route>
+                <Route path="/" element={<Home socket={socket}><Login /></Home>}></Route>
+                <Route path="/signup" element={<Home><SignUp socket={socket}/></Home>}></Route>
                 <Route path="/chat" element={<ChatPage socket={socket} />}></Route>
                 <Route path="*" element={<div></div>}/>
                 <Route path="/chat/detail/:id" element={<ChatPage><ChatWindow socket={socket} /></ChatPage>}></Route>

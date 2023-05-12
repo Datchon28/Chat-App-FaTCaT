@@ -4,7 +4,7 @@ import ChatContent from "./ChatContent/ChatContent";
 import { ApiServer } from "../../../../App";
 import SendChatControl from "./SendChatControl/SendChatControl";
 
-function ChatBody({ socket, roomChoosing }) {
+function ChatBody({ socket, roomChoosing, loading }) {
     const Api = useContext(ApiServer)
     const [message,  setMessage] = useState([]) 
 
@@ -17,7 +17,7 @@ function ChatBody({ socket, roomChoosing }) {
 
     return (
         <>  
-            <ChatContent Api={Api} socket={socket} message={message}  />
+            <ChatContent message={message} roomChoosing={roomChoosing} loading={loading}  />
             <SendChatControl socket={socket} Api={Api} roomChoosing={roomChoosing} />
             
         </>

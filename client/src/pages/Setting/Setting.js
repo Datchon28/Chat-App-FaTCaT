@@ -12,11 +12,11 @@ function Setting() {
 
     return (
         <div className="dark:text-white px-3 mt-4 transition-transform">
-            <div className="flex items-start">
+            <div className="flex items-center mb-6">
                 <Link to='/chat'>
-                    <span className="px-3 py-2 -ml-3"><FontAwesomeIcon icon={faArrowLeft} /></span>
+                    <span className="hover:dark:bg-dark-color-seen px-3 py-2 rounded-full"><FontAwesomeIcon icon={faArrowLeft} /></span>
                 </Link>
-                <h1 className="text-2xl mb-4 ml-2">SETTING</h1>
+                <h1 className="text-3xl font-semibold leading-7 ml-3 ">SETTING</h1>
             </div>
             
             <div className="border-b border-gray-900/10 pb-12">

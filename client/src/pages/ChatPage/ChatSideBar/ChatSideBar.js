@@ -9,6 +9,7 @@ import ListChat from "./ListChat/ListChat";
 import DropMenu from "../../../components/DropMenu/DropMenu";
 import { ApiServer } from "../../../App";
 import MenuSidebarMobile from "./OnMobile/MenuSidebarMobile/MenuSidebarMobile";
+import Tippy from "@tippyjs/react";
 
 function ChatSideBar({ socket }) {
     const Api = useContext(ApiServer)
@@ -24,7 +25,6 @@ function ChatSideBar({ socket }) {
     
     const [openCreateNewRoom, setOpenCreateNewRoom] = useState(false)
     const [menuUser, setMenuUser] = useState(false)
-    const [openReferences, setOpenReferences] = useState(false)
 
     // Check Create Room
     const [createRoomSucess, setCreateRoomSucess] = useState(false)
@@ -100,48 +100,34 @@ function ChatSideBar({ socket }) {
     }
 
     const handleDeleteMem = (item) => {
-
         const after = list.filter((af, index) => af !== item)
         setList(after);
     };
     
-    const ChangeImage = (e) => {
-        const reader = new FileReader()
-        reader.onload = () => {
-            const output = document.querySelector('#avatar')
-            output.src = reader.result
-        }
-        reader.readAsDataURL(e.target.files[0])
-    }
 
     return (
         <div className={`wrapper relative flex justify-center flex-col bg-color-sidebar dark:bg-dark-color-sidebar text-color-title dark:text-white w-60 h-screen py-5 px-4 max-sm:w-full translate-x-0
            transition-transform duration-300 ${openChatRoom && 'transition-transform max-sm:-translate-x-full duration-300'}
         `} >
-           <div  className=" mb-1 mt-9 max-sm:mt-0 h-32">
-                <div className="h-14 flex items-start justify-between mb-2">
+           <div  className=" mb-1 mt-9 max-sm:mt-0 h-32 pt-10 max-sm:pt-0">
+                <div className="h-14 max-sm:flex items-start justify-between mb-2 hidden">
                     <DropMenu content={
-                            <ul className=" w-auto h-auto shadow-sm dark:shadow-md border border-solid border-slate-500 
-                            shadow-slate-400 dark:shadow-black dark:bg-dark-color-sidebar rounded-lg text-md">
-                                <li onClick={() => navigate('/account')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Account</li>
-                                <li onClick={() => navigate('/setting')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Setting</li>
-                                <li className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-2 my-1 font-semibold rounded-b-md">
-                                    <button className='' onClick={handleSignOut}>
-                                        <span className=" text-center pt-1 mr-2 text-lg"><FontAwesomeIcon icon={faSignOut} /></span>
-                                        Sign Out
-                                    </button>
-                                </li>
-                                
-                            </ul>
+                        <>
+                            <li onClick={() => navigate('/account')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Account</li>
+                            <li onClick={() => navigate('/setting')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Setting</li>
+                            <li className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-2 my-1 font-semibold rounded-b-md">
+                                <button className='' onClick={handleSignOut}>
+                                    <span className=" text-center pt-1 mr-2 text-lg"><FontAwesomeIcon icon={faSignOut} /></span>
+                                    Sign Out
+                                </button>
+                            </li>
+                        </>
                     }>
-                            <div className='user flex items-center cursor-default' onClick={() => setMenuUser(!menuUser)}>
-                                <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
-                                <span className=' text-lg font-bold '>{currentUser && currentUser.userName}</span>
-                            </div>
-                        </DropMenu>
-
-                        {/* <input onChange={ChangeImage} type='file'  className='w-12 mr-3 rounded-full object-cover' /> */}
-                        
+                        <div className='user flex items-center cursor-default' onClick={() => setMenuUser(!menuUser)}>
+                            <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
+                            <span className=' text-lg font-bold '>{currentUser && currentUser.userName}</span>
+                        </div>
+                    </DropMenu>
                 </div>     
 
                 <div className="flex justify-between items-center mb-2">
@@ -149,9 +135,11 @@ function ChatSideBar({ socket }) {
                         <FontAwesomeIcon icon={faList} />
                     </span>
                     <h1 className="text-2xl font-semibold max-sm:pl-2 max-sm:pr-4 max-sm:pb-2">Chat</h1>
-                    <span className="hidden max-sm:inline-block max-sm:px-3 max-sm:py-1.5 max-sm:text-base hover:dark:bg-dark-color-primary rounded-full">
-                        <FontAwesomeIcon icon={faPlus} />
-                    </span>
+                    <Tippy content='Create New Room' placement="right">
+                        <span onClick={handleOpenCreateRoom} className=" py-2 px-3 rounded-lg cursor-pointer transition-colors max-sm:inline-block max-sm:px-3 max-sm:py-1.5 max-sm:text-base hover:dark:bg-dark-color-primary max-sm:rounded-full">
+                            <FontAwesomeIcon icon={faPlus} />
+                        </span>
+                    </Tippy>
                 </div>
                 <Search />
            </div>
@@ -189,7 +177,28 @@ function ChatSideBar({ socket }) {
                 }
                 
                 <ListChat socket={socket} room={room} />
+                
             </div>
+
+            <div className="h-14 flex items-start justify-between mb-2 max-sm:hidden">
+                    <DropMenu content={
+                        <>
+                            <li onClick={() => navigate('/account')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Account</li>
+                            <li onClick={() => navigate('/setting')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Setting</li>
+                            <li className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-2 my-1 font-semibold rounded-b-md">
+                                <button className='' onClick={handleSignOut}>
+                                    <span className=" text-center pt-1 mr-2 text-lg"><FontAwesomeIcon icon={faSignOut} /></span>
+                                    Sign Out
+                                </button>
+                            </li>
+                        </>
+                    }>
+                        <div className='user flex items-center cursor-default' onClick={() => setMenuUser(!menuUser)}>
+                            <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
+                            <span className=' text-lg font-bold '>{currentUser && currentUser.userName}</span>
+                        </div>
+                    </DropMenu>
+                </div>
         </div>
     );
 }

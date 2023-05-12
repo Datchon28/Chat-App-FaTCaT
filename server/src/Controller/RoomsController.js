@@ -26,20 +26,7 @@ class RoomsController {
             next()
         }
     }
-
-    async getRoomChoose(req, res, next) {
-        try {
-            await Rooms.find({ _id: req.query.id })
-            .then(result => {
-                // console.log(result);
-                res.status(200).send(result)
-            })
-        } catch (error) {
-            res.status(500).send(error)
-            next()
-        }
-    }
-
+    
     async saveMessage(req, res, next) {
         try {
             

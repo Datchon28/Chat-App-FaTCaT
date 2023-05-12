@@ -127,14 +127,13 @@ function SignUp() {
   };
 
     return (
-        <div className="flex min-h-full items-center justify-between h-screen">
-        <div className="w-full max-w-2xl mx-auto py-18 space-y-8">
+        <div className="w-full max-w-2xl mx-auto py-18 space-y-8 max-sm:absolute max-sm:top-1/2 max-sm:-translate-y-1/2 bg-white max-sm:max-w-sm max-sm:rounded-lg max-sm:px-7 max-sm:py-7">
           <div>
-          <h1 className=" text-center text-3xl font-bold tracking-tight text-gray-900">
+          <h1 className=" text-center text-3xl font-bold tracking-tight text-gray-900 max-sm:hidden">
               Welcome to FATCAT
             </h1>
             <img
-              className="mx-auto w-52 h-52"
+              className="mx-auto w-52 h-52 max-sm:w-40 max-sm:h-40"
               src={Logo}
               alt="Your Company"
             />
@@ -146,7 +145,7 @@ function SignUp() {
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md">
             <div className='mb-3'>
-                <label htmlFor="userName" className="sr-only">
+                <label htmlFor="user-name" className="sr-only">
                   Username
                 </label>
                 <input
@@ -268,15 +267,15 @@ function SignUp() {
                   onChange={(e) => setAcceptCondition(e.target.value)}
                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                  I understand and accept with <a className=' text-indigo-600 cursor-pointer hover:underline font-semibold'>Terms of use</a> & <a className=' text-indigo-600 cursor-pointer hover:underline font-semibold'>Privacy Policy</a>
+                <label htmlFor="remember-me" className="ml-2 block max-sm:text-xs text-sm text-gray-900">
+                  I understand and accept with <br></br><a className=' text-indigo-600 cursor-pointer hover:underline font-semibold'>Terms of use</a> & <a className=' text-indigo-600 cursor-pointer hover:underline font-semibold'>Privacy Policy</a>
                 </label>
               </div>
 
               <div className="text-sm">
                 <Link to='/'>
                   <span href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                    If you have account? Login now!
+                    If you have account?<br></br> Login now!
                   </span>
                 </Link>
               </div>
@@ -296,10 +295,6 @@ function SignUp() {
             </div>
           </form>
         </div>
-        <div className=' max-w-width-form-login-signup w-full h-full'>
-          <img src={imgHome} className='h-full w-full object-cover' />
-        </div>
-      </div>
     );
 }
 

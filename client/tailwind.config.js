@@ -12,12 +12,13 @@ module.exports = {
       maxWidth: {
         'avatar': '4.2%',
         'width-form-login-signup' : '50%',
-        'modal-new-room': '40%',
+        'modal-new-room': '85%',
 
       },
       maxHeight : {
         'navbar' : '90px',
         'height-child-list-chat-sidebar': 'calc(100% - 160px)',
+        'modal-new-room' : '450px'
       },
       margin: {
         'navbar' : '90px',
