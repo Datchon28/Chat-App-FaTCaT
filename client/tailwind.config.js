@@ -87,6 +87,9 @@ module.exports = {
         'color-lastmessage': '#777',
         'color-search-icon': '#838383'
       },
+      outlineColor: {
+        'outline' : '#2a22ffab;'
+      },
 
       top: {
         'search-icon': '10%',

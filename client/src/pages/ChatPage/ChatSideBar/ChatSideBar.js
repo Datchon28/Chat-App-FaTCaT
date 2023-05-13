@@ -109,27 +109,7 @@ function ChatSideBar({ socket }) {
         <div className={`wrapper relative flex justify-center flex-col bg-color-sidebar dark:bg-dark-color-sidebar text-color-title dark:text-white w-60 h-screen py-5 px-4 max-sm:w-full translate-x-0
            transition-transform duration-300 ${openChatRoom && 'transition-transform max-sm:-translate-x-full duration-300'}
         `} >
-           <div  className=" mb-1 mt-9 max-sm:mt-0 h-32 pt-10 max-sm:pt-0">
-                <div className="h-14 max-sm:flex items-start justify-between mb-2 hidden">
-                    <DropMenu content={
-                        <>
-                            <li onClick={() => navigate('/account')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Account</li>
-                            <li onClick={() => navigate('/setting')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Setting</li>
-                            <li className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-2 my-1 font-semibold rounded-b-md">
-                                <button className='' onClick={handleSignOut}>
-                                    <span className=" text-center pt-1 mr-2 text-lg"><FontAwesomeIcon icon={faSignOut} /></span>
-                                    Sign Out
-                                </button>
-                            </li>
-                        </>
-                    }>
-                        <div className='user flex items-center cursor-default' onClick={() => setMenuUser(!menuUser)}>
-                            <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
-                            <span className=' text-lg font-bold '>{currentUser && currentUser.userName}</span>
-                        </div>
-                    </DropMenu>
-                </div>     
-
+           <div  className=" mb-1 mt-9 max-sm:mt-0 h-32 pt-10 max-sm:pt-6">
                 <div className="flex justify-between items-center mb-2">
                     <span onClick={() => setOpenMenuMobile(!openMenuMobile)} className=" hidden max-sm:inline-block max-sm:px-3 max-sm:py-1.5 max-sm:text-base">
                         <FontAwesomeIcon icon={faList} />
@@ -144,11 +124,10 @@ function ChatSideBar({ socket }) {
                 <Search />
            </div>
            
-           {openMenuMobile && <div onClick={() => setOpenMenuMobile(!openMenuMobile)} className={`w-full h-full fixed top-0 left-0 bg-modal`}>
-                <MenuSidebarMobile  />
-           </div>}
+            <MenuSidebarMobile info={currentUser} openMenu={openMenuMobile} closeMenu={() => setOpenMenuMobile(!openMenuMobile)}  />
+           
             
-            <div className='chat-list flex-1 h-height-parent-list-chat-sidebar mt-4'>
+            <div className='chat-list flex-1 h-height-parent-list-chat-sidebar mt-4 max-sm:mt-0'>
                 
                 {/* <div className="h-12">
                     <button className="w-full rounded-md text-center px-1 py-2 bg-color-primary dark:bg-dark-color-primary text-white mt-2 cursor-pointer hover:brightness-110 transition-colors duration-100" onClick={handleOpenCreateRoom}>New Room</button>

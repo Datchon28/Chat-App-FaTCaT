@@ -156,7 +156,7 @@ function SignUp() {
                   required
                   value={userName}
                   onChange={checkUSerName}
-                  className="relative block w-full border-0 rounded-xl py-2 px-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="relative block w-full border-0 rounded-xl mb-3 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6"
                   placeholder="Username "
                 />
                 {ruleUserName && <span className=' pl-2 text-red-600 font-semibold text-sm'>! Your username needs to be at least 6 characters </span>}
@@ -174,7 +174,7 @@ function SignUp() {
                   required
                   value={email}
                   onChange={checkEmail}
-                  className={`relative block w-full border-0 rounded-xl py-2 px-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
+                  className={`relative block w-full border-0 rounded-xl mb-3 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6`}
                   placeholder="Email address "
                 />
                 {ruleEmail && <span className=' pl-2 text-red-600 font-semibold text-sm mb-3'>! Must be valid email </span>}
@@ -193,7 +193,7 @@ function SignUp() {
                     required
                     value={firstName}
                     onChange={checkFirstName}
-                    className="relative block w-full rounded-xl mr-2 mb-3 py-2 px-5 border-0 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="relative block w-full border-0 rounded-xl mb-3 mr-2 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6"
                     placeholder="First Name"
                   />
                   {ruleFirstName && <span className=' pl-2 text-red-600 font-semibold text-sm'>! Invalid</span>}
@@ -209,7 +209,7 @@ function SignUp() {
                     required
                     value={lastName}
                     onChange={checkLastName}
-                    className="relative block w-full rounded-xl ml-2 mb-3 py-2 px-5 border-0 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="relative block w-full border-0 rounded-xl mb-3 ml-2 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6"
                     placeholder="Last Name"
                   />
                   {ruleLastName && <span className=' pl-2 text-red-600 font-semibold text-sm'>! Invalid</span>}
@@ -227,7 +227,7 @@ function SignUp() {
                   required
                   value={password}
                   onChange={checkPassword}
-                  className={`relative block w-full border-0 rounded-xl py-2 px-5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
+                  className={`relative block w-full border-0 rounded-xl mb-3 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6`}
                   placeholder="Password"
                 />
                 {rulePassword && <span className=' pl-2 text-red-600 font-semibold text-sm'>! Your password must be at least: 8 characters, 
@@ -248,7 +248,7 @@ function SignUp() {
                   required
                   value={passwordConfirm}
                   onChange={checkPasswordConfirm}
-                  className="relative block w-full rounded-xl py-2 px-5 border-0 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="relative block w-full border-0 rounded-xl mb-3 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6"
                   placeholder="Password Confirm"
                 />
                 {rulePasswordConfirm && <span className=' pl-2 text-red-600 font-semibold text-sm'>! Your Password Confirm does not match</span>}
