@@ -169,7 +169,7 @@ function ChatSideBar({ socket }) {
                         </>
                     }>
                         <div className='user flex items-center cursor-default' onClick={() => setMenuUser(!menuUser)}>
-                            <img id="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
+                            <img id="avatar" alt="avatar" src="https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg" className='w-12 mr-3 rounded-full object-cover' />
                             <span className=' text-lg font-bold '>{currentUser && currentUser.userName}</span>
                         </div>
                     </DropMenu>
