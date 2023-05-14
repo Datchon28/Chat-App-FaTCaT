@@ -1,6 +1,6 @@
 #enviroment variable
 .env
-webpack.config.js
+
 
 # dependencies
 /node_modules
