@@ -3,16 +3,11 @@ import './ChatContent.custome.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAngleLeft,
-    faFaceAngry,
-    faFaceSmile,
     faSpinner,
-    faTentArrowDownToLine,
-    faTentArrowTurnLeft,
     faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
-import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react';
 
 var images = [
     { id: 'like', unicode: '&#x1f44d;' },
