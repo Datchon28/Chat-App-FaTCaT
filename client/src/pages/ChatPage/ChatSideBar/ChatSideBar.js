@@ -52,17 +52,13 @@ function ChatSideBar({ socket }) {
             setRoom(room.data);
         })
 
-    }, [createRoomSucess])
+    }, [Api, currentUser._id, currentUser.userName, createRoomSucess])
 
 
     const AddMemberBtn = () => { 
         setList([...list, member])
         setMember('')
     }
-
-    const openRoomOnMobile = () => {
-        
-    } 
 
     useEffect(() => {
         if(location.pathname === '/chat') {

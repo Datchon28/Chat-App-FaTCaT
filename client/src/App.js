@@ -26,7 +26,6 @@ function App() {
                 <Route path="/" element={<Home socket={socket}><Login /></Home>}></Route>
                 <Route path="/signup" element={<Home><SignUp socket={socket}/></Home>}></Route>
                 <Route path="/chat" element={<ChatPage socket={socket} />}></Route>
-                <Route path="*" element={<div></div>}/>
                 <Route path="/chat/detail/:id" element={<ChatPage><ChatWindow socket={socket} /></ChatPage>}></Route>
                 <Route path="/account" element={<ChatPage><Account /></ChatPage>}></Route>
                 <Route path="/setting" element={<ChatPage><Setting /></ChatPage>}></Route>

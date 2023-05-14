@@ -34,13 +34,11 @@ function ChatWindow({ socket }) {
             setLoading(false)
         }
         fetchData()  
-    },[socket, param])
+    },[Api,socket, param])
 
     const handleopenInfoRoom = () => {
         setOpenInfoRoom(!openInfoRoom)
     }
-
-    console.log(openInfoRoom);
 
     return ( 
         <div className="main flex">
