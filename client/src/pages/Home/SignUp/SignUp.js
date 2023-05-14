@@ -174,7 +174,7 @@ function SignUp() {
                   required
                   value={email}
                   onChange={checkEmail}
-                  className={`relative block w-full border-0 rounded-xl mb-3 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6`}
+                  className={`relative block w-full border-0 rounded-xl mb-2 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6`}
                   placeholder="Email address "
                 />
                 {ruleEmail && <span className=' pl-2 text-red-600 font-semibold text-sm mb-3'>! Must be valid email </span>}

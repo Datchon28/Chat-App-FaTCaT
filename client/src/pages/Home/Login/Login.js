@@ -61,7 +61,7 @@ function Login() {
               </h2>
             </div>
           </div>
-          <form className="mt-8 space-y-6" method='POST' >
+          <form className="mt-8 space-y-6 max-sm:mt-0" method='POST' >
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
             <div>
@@ -76,7 +76,7 @@ function Login() {
                   required
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
-                  className="relative block w-full border-0 rounded-xl mb-3 py-2 px-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6"
+                  className="relative block w-full border-0 rounded-xl mb-3 py-2 px-5 max-sm:mb-5 text-gray-900 outline outline-outline focus:outline-outline placeholder:text-gray-400 focus:z-10 sm:text-sm sm:leading-6"
                   placeholder="Username "
                 />
               </div>

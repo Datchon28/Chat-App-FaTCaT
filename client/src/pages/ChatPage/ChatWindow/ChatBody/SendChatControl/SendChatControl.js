@@ -1,6 +1,7 @@
 import { faFaceSmile, faImage } from '@fortawesome/free-regular-svg-icons'
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import EmojiPicker, { Emoji, EmojiStyle, EmojiClickData } from 'emoji-picker-react';
 
 import axios from 'axios'
 import { useState } from 'react';
@@ -8,9 +9,9 @@ import { useState } from 'react';
 
 function SendChatControl({ socket, roomChoosing, Api }) {
     const [text, setText] = useState('')
-    const [typing, setTyping] = useState(false)
-
-    
+    const [openEmoji, setOpenEmoji] = useState(false)
+    const [emoji, setEmoji] = useState('')
+    console.log(emoji);
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const userName = user.userName  
     
@@ -46,7 +47,6 @@ function SendChatControl({ socket, roomChoosing, Api }) {
                 console.log(error);
             })
         }
-        setTyping(false)
     }
 
     return (
@@ -54,19 +54,27 @@ function SendChatControl({ socket, roomChoosing, Api }) {
          max-sm:px-1
         `} onSubmit={handleSendChat}>
             <div className='w-full flex justify-between items-center max-h-10 h-full mt-5 focus:bg-slate-500 border-solid'>
-                <div className="mr-3 max-sm:mr-1 flex items-center" >
+                <div className="mr-3 max-sm:mr-1 flex items-center relative" >
                     <span className='px-2 py-2 cursor-pointer hover:bg-sky-600 hover:text-white rounded-md'>
                         <FontAwesomeIcon icon={faImage} />
                     </span>
 
-                    <span className='px-2 py-2 cursor-pointer hover:bg-sky-600 hover:text-white rounded-md'>
+                    <span onClick={() => setOpenEmoji(!openEmoji)} className='px-2 py-2 cursor-pointer hover:bg-sky-600 hover:text-white rounded-md'>
                         <FontAwesomeIcon icon={faFaceSmile} />
                     </span>
 
+                    {openEmoji && <div className='absolute bottom-12 left-0'><EmojiPicker onEmojiClick={(EmojiClickData) => setEmoji('&#x'+EmojiClickData.unified+';')} /></div>}
+                </div>
+                
+                <div>
+                    <h3 dangerouslySetInnerHTML={{__html: emoji}}></h3>
+                    
                 </div>
                 
                 <div className=" w-4/5 h-full">
-                    <input type="text" className="bg-color-sidebar dark:bg-dark-color-sidebar dark:outline-none outline outline-1 outline-slate-300 pr-8 rounded-lg pl-3 w-full h-full bg-color-input placeholder:text-slate-500" placeholder='Send Message' value={text} onChange={ChatCurrentListenChange} />
+                    <input type="text" className="bg-color-sidebar dark:bg-dark-color-sidebar dark:outline-none outline outline-1 outline-slate-300 pr-8 rounded-lg pl-3 w-full h-full bg-color-input placeholder:text-slate-500" 
+                    placeholder='Send Message' value={text} onChange={ChatCurrentListenChange} />
+                    
                 </div>
 
                 <div className='flex justify-between items-center ml-4'>

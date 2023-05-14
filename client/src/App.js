@@ -23,7 +23,7 @@ function App() {
       <div className="main max-h-screen h-full overflow-hidden">
         <ApiServer.Provider value={Api}>
             <Routes>
-                <Route path="/" element={<Home socket={socket}><Login /></Home>}></Route>
+                <Route path="/" element={<Home socket={socket}></Home>}></Route>
                 <Route path="/signup" element={<Home><SignUp socket={socket}/></Home>}></Route>
                 <Route path="/chat" element={<ChatPage socket={socket} />}></Route>
                 <Route path="/chat/detail/:id" element={<ChatPage><ChatWindow socket={socket} /></ChatPage>}></Route>

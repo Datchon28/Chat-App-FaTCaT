@@ -47,6 +47,8 @@ function ChatSideBar({ socket }) {
     }
    
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+
         axios.get(`${Api}/rooms/detail?admin=${currentUser._id}&person=${currentUser.userName}` )
         .then(room => {
             setRoom(room.data);
@@ -124,10 +126,6 @@ function ChatSideBar({ socket }) {
            
             
             <div className='chat-list flex-1 h-height-parent-list-chat-sidebar mt-4 max-sm:mt-0'>
-                
-                {/* <div className="h-12">
-                    <button className="w-full rounded-md text-center px-1 py-2 bg-color-primary dark:bg-dark-color-primary text-white mt-2 cursor-pointer hover:brightness-110 transition-colors duration-100" onClick={handleOpenCreateRoom}>New Room</button>
-                </div> */}
                 
                {openCreateNewRoom &&  
                     <div>

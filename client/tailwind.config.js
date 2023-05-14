@@ -86,7 +86,7 @@ module.exports = {
         'color-search-icon': '#838383'
       },
       outlineColor: {
-        'outline' : '#2a22ffab;'
+        'outline' : '#2a22ff85;'
       },
 
       top: {
