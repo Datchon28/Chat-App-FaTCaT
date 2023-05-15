@@ -125,7 +125,7 @@ function ChatSideBar({ socket }) {
             <MenuSidebarMobile info={currentUser} openMenu={openMenuMobile} closeMenu={() => setOpenMenuMobile(!openMenuMobile)}  />
            
             
-            <div className='chat-list flex-1 h-height-parent-list-chat-sidebar mt-4 max-sm:mt-0'>
+            <div className='chat-list flex-1 h-height-parent-list-chat-sidebar mt- max-sm:mt-0'>
                 
                {openCreateNewRoom &&  
                     <div>

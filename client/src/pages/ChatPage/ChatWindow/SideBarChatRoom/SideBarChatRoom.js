@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faArrowLeft, faArrowUp, faBell, faBellSlash, faFile, faImage, faLink, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faAngleUp, faArrowLeft, faBell, faBellSlash, faFile, faImage, faLink, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 const listOption = [
@@ -60,7 +60,7 @@ function SideBarChatRoom({ data, BackToChatContent }) {
     const [searchMessage, setSearchMessage] = useState(false)
     const [allMember, setAllMemeber] = useState(false)
 
-    const [openList, setOpenList] = useState(false)
+    const [openList, setOpenList] = useState(null)
 
 
     const handleAlert = () => {
@@ -111,19 +111,21 @@ function SideBarChatRoom({ data, BackToChatContent }) {
                         {
                             listOption.map((list, index) => (
                                 <li key={index} className="flex flex-col my-2 py-2 px-2"> 
-                                    <div className="flex items-center justify-between">
+                                    <div id={list.id} onClick={(e) => setOpenList(e.target.id)} className="flex items-center justify-between">
                                         <span>{list.title} </span>
-                                        <span><FontAwesomeIcon icon={faArrowUp} /></span>
+                                        <span><FontAwesomeIcon icon={faAngleUp} /></span>
                                     </div>
 
-                                    {list.option_detail.map((item, index) => (
-                                        <div key={index} className={` ${item.title === '' && 'hidden'} h-fit transition-all detail-item flex flex-col mt-1`}>
-                                            <div className="flex items-center my-1">
+                                    
+                                        <div className={` h-fit transition-all detail-item flex flex-col mt-1`}>
+                                            {list.option_detail.map((item, index) => (
+                                            <div key={index} className="flex items-center my-1">
                                                 {/* <span className="mr-3 w-5 text-base"><FontAwesomeIcon icon={faImage} /></span> */}
                                                 <span>{item.title}</span>
                                             </div>
+                                            ))}
                                         </div>
-                                    ))}
+                                    
 
                                     
                                     

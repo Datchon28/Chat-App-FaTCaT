@@ -100,6 +100,9 @@ module.exports = {
       fontSize: {
         'lastmessage-sumary-sidebar': '13px'
       },
+      animation: {
+        'smooth': ' { to { transform: rotate(360deg) } }',
+      }
     },
   },
   plugins: [],

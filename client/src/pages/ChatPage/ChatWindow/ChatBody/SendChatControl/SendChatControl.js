@@ -67,7 +67,7 @@ function SendChatControl({ socket, roomChoosing, Api }) {
                         <FontAwesomeIcon icon={faFaceSmile} />
                     </span>
 
-                    {openEmoji && <div className='absolute bottom-12 left-0'><EmojiPicker onEmojiClick={(EmojiClickData) => setEmoji('&#x'+EmojiClickData.unified+';')} /></div>}
+                    {/* {openEmoji && <div className='absolute bottom-12 left-0'><EmojiPicker onEmojiClick={(EmojiClickData) => setEmoji('&#x'+EmojiClickData.unified+';')} /></div>} */}
                 </div>
                 
                 <div>

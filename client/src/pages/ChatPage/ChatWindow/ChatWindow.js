@@ -49,7 +49,7 @@ function ChatWindow({ socket }) {
                 <ChatBody roomChoosing={roomChoosing} socket={socket} loading={loading} />
             </div>
 
-            <div className={`${openInfoRoom ? 'max-sm:w-full translate-x-0' : 'max-sm:w-0 max-sm:translate-x-full overflow-hidden'} transition-all duration-300 `}>
+            <div className={`${openInfoRoom ? ' max-sm:w-full translate-x-0' : ' w-0 max-sm:w-0 max-sm:translate-x-full overflow-hidden'} transition-all duration-300 `}>
                 <SideBarChatRoom data={roomChoosing} BackToChatContent={() => setOpenInfoRoom(!openInfoRoom)} />
             </div>
         </div>
