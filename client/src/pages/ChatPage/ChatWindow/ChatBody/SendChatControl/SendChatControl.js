@@ -41,6 +41,8 @@ function SendChatControl({ socket, roomChoosing, Api }) {
                     month: timer.getMonth(),
                     year: timer.getFullYear()
                 }
+                
+                
             })
             .then(result => {
                

@@ -25,7 +25,13 @@ const Rooms = new Schema({
             userName: { type: String },
             text: { type: String },
             reaction: { type: String, default: null },
-            createAt: {type: Date, default: Date.now}
+            createAt: {
+                minutes: {type: String , default:null},
+                hour: {type: String , default:null} ,
+                date: {type: String , default:null} ,
+                month: {type: String , default:null} ,
+                year: {type: String , default:null} 
+            }
         }
      ],
     createAt: { type: Date, default: Date.now }
