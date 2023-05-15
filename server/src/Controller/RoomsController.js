@@ -34,7 +34,8 @@ class RoomsController {
                 $push: {
                     messages: {
                         userName: req.body.userName,
-                        text: req.body.message
+                        text: req.body.message,
+                        createAt: req.body.createAt
                     }
                 }
             })

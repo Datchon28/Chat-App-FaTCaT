@@ -104,7 +104,7 @@ function ChatSideBar({ socket }) {
     
 
     return (
-        <div className={`wrapper relative flex justify-center flex-col bg-color-sidebar dark:bg-dark-color-sidebar text-color-title dark:text-white w-60 h-screen py-5 px-4 max-sm:w-full translate-x-0
+        <div className={`wrapper relative flex justify-center flex-col bg-color-sidebar dark:bg-dark-color-sidebar text-color-title dark:text-white  w-80 h-screen py-5 px-4 max-sm:w-full translate-x-0
            transition-transform duration-300 ${openChatRoom && 'transition-transform max-sm:-translate-x-full duration-300'}
         `} >
            <div  className=" mb-1 mt-9 max-sm:mt-0 h-32 pt-10 max-sm:pt-6">

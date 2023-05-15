@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { createElement, useEffect, useRef, useState } from 'react';
 import './ChatContent.custome.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 var images = [
     { id: 'like', unicode: '&#x1f44d;' },
@@ -23,15 +24,28 @@ function ChatContent({ message, roomChoosing, loading }) {
     const lastMessage = useRef(null);
     const [thisMessage, setThisMessage] = useState('');
     const [reaction, setReaction] = useState(null);
+    const [test, setTest] = useState([])
+    
 
     useEffect(() => {
         lastMessage.current?.scrollIntoView({ behavior: 'smooth' });
     }, [message]);
 
     const handleReaction = (id) => {
+        const current = document.getElementById(thisMessage)
+        const react = document.getElementById('react')
+        const lol = document.createElement('span')
         const reaction = images.filter((item) => item.id === id);
         setReaction(reaction[0].unicode);
+        setTest([{ ...test }, { id:'', li: reaction[0].unicode }])
+        lol.textContent = 
+        // if(current.id !== thisMessage) {
+        //     current.classList.add('hidden')
+        // }
+        console.log(current.id);
     };
+
+    console.log(test);
 
     return (
         <div
@@ -129,7 +143,7 @@ function ChatContent({ message, roomChoosing, loading }) {
                                                 )}
                                                 interactive
                                             >
-                                                <p
+                                                <p  
                                                     id={ms._id}
                                                     className={` relative w-fit rounded-xl max-w-xs py-2 text-center ${
                                                         currentUser.userName === ms.userName
@@ -138,10 +152,8 @@ function ChatContent({ message, roomChoosing, loading }) {
                                                     } px-4 py-1  `}
                                                 >
                                                     {ms.text && ms.text}
-                                                    <span
-                                                        className=" absolute -bottom-2 text-sm px-1 bg-red-500 right-2 z-10 rounded-full"
-                                                        dangerouslySetInnerHTML={{ __html: reaction }}
-                                                    ></span>
+                                                    {}
+                                                    
                                                 </p>
                                             </Tippy>
                                         </div>
@@ -250,3 +262,14 @@ function ChatContent({ message, roomChoosing, loading }) {
 }
 
 export default ChatContent;
+
+
+// {
+//     ms._id === thisMessage ? 
+//     <span
+    
+//     id='react'
+//     className={`  absolute -bottom-2 text-sm px-0.5 py-px bg-red-500 right-2 z-10 rounded-full`}
+//     dangerouslySetInnerHTML={{ __html: reaction }}
+// ></span> : null
+// }

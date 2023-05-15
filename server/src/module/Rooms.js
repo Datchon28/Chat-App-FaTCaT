@@ -24,6 +24,7 @@ const Rooms = new Schema({
         {
             userName: { type: String },
             text: { type: String },
+            reaction: { type: String, default: null },
             createAt: {type: Date, default: Date.now}
         }
      ],

@@ -2,10 +2,65 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown, faArrowLeft, faArrowUp, faBell, faBellSlash, faFile, faImage, faLink, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
+const listOption = [
+    {
+        id:'1',
+        title: 'Information about the chat',
+        option_detail: [
+            {
+                id:'',
+                title: ''
+            }
+        ]
+    },
+    {
+        id:'2',
+        title: 'Customize chat',
+        option_detail: [
+            {
+                id:'',
+                title: ''
+            }
+        ]
+    },
+    {
+        id:'3',
+        title: 'Media files, files and links',
+        option_detail: [
+            {
+                id:'',
+                title: 'Media files'
+            },
+            {
+                id:'',
+                title: 'Files'
+            },
+            {
+                id:'',
+                title: 'Links'
+            },
+            
+        ]
+    },
+    {
+        id:'4',
+        title: 'Privacy and support',
+        option_detail: [
+            {
+                id:'',
+                title: ''
+            }
+        ]
+    },    
+
+]
+
 function SideBarChatRoom({ data, BackToChatContent }) {
     const [alert, setAlert] = useState(true)
     const [searchMessage, setSearchMessage] = useState(false)
     const [allMember, setAllMemeber] = useState(false)
+
+    const [openList, setOpenList] = useState(false)
 
 
     const handleAlert = () => {
@@ -53,40 +108,29 @@ function SideBarChatRoom({ data, BackToChatContent }) {
 
                 <div className="list-option w-full text-md ">
                     <ul>
-                        <li className="flex justify-between items-center my-2 py-2 px-2"> 
-                            <span>Information about the chat </span>
-                            <span><FontAwesomeIcon icon={faArrowUp} /></span>
-                        </li>
-                        <li className="flex justify-between items-center my-2 py-2 px-2"> 
-                            <span>Customize chat</span>
-                            <span><FontAwesomeIcon icon={faArrowUp} /></span>
-                        </li>
-                        <li className="flex justify-between items-center my-2 py-2 px-2"> 
-                            <span>Media files, files and links</span>
-                            <span><FontAwesomeIcon icon={faArrowUp} /></span>
-                        </li>
+                        {
+                            listOption.map((list, index) => (
+                                <li key={index} className="flex flex-col my-2 py-2 px-2"> 
+                                    <div className="flex items-center justify-between">
+                                        <span>{list.title} </span>
+                                        <span><FontAwesomeIcon icon={faArrowUp} /></span>
+                                    </div>
 
-                        <div className="detail-item flex flex-col h-24 ">
-                                <div className="flex items-center my-1">
-                                    <span className="mr-3 w-5 text-base"><FontAwesomeIcon icon={faImage} /></span>
-                                    <span>Media files</span>
-                                </div>
+                                    {list.option_detail.map((item, index) => (
+                                        <div key={index} className={` ${item.title === '' && 'hidden'} h-fit transition-all detail-item flex flex-col mt-1`}>
+                                            <div className="flex items-center my-1">
+                                                {/* <span className="mr-3 w-5 text-base"><FontAwesomeIcon icon={faImage} /></span> */}
+                                                <span>{item.title}</span>
+                                            </div>
+                                        </div>
+                                    ))}
 
-                                <div className="flex items-center my-1">
-                                    <span className="mr-3 w-5 text-base"><FontAwesomeIcon icon={faFile} /></span>
-                                    <span>Files</span>
-                                </div>
-
-                                <div className="flex items-center my-1">
-                                    <span className="mr-3 w-5 text-base"><FontAwesomeIcon icon={faLink} /></span>
-                                    <span>Links</span>
-                                </div>
-                        </div>
-
-                        <li className="flex justify-between items-center my-2 py-2 px-2">
-                            <span>Privacy and support</span>
-                            <span><FontAwesomeIcon icon={faArrowUp} /></span>
-                        </li>
+                                    
+                                    
+                                </li>
+                            ))
+                        }
+                        
                     </ul>
                 </div>
 

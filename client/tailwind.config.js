@@ -28,7 +28,7 @@ module.exports = {
       },
 
       width: {
-        'chat-window-width' : 'calc(100% - (240px + 320px))',
+        'chat-window-width' : 'calc(100% - (320px + 320px))',
         'chat-window-width-none-choosing-room' : 'calc(100% - 240px)',
       },
 

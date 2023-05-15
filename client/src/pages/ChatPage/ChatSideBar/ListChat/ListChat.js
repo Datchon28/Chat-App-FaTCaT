@@ -6,6 +6,8 @@ function ListChat({ room ,socket }) {
     const [idRoomChoosing, setIdRoomChoosing] = useState(undefined)
     const [seenChat, setSeenChat] = useState(false)
 
+    console.log();
+
     const navigate = useNavigate()
     const param = useParams()
     
@@ -33,9 +35,13 @@ function ListChat({ room ,socket }) {
                     </div>
                     
                     <div id={list._id}>
-                        {list.messages.length > 0 ? <span id={list._id} className='w-full py-2 text-sm text-color-lastmessage ml-1'>
-                            {list.messages[list.messages.length -1].userName} : { list.messages[list.messages.length -1].text}
-                            </span> : 
+                        {list.messages.length > 0 ? 
+                            <div>
+                                <span id={list._id} className='w-full py-2 text-sm text-color-lastmessage ml-1'>
+                                    {list.messages[list.messages.length -1].userName} : { list.messages[list.messages.length -1].text}
+                                </span>
+                                <span> {console.log(list.messages[list.messages.length -1].createAt)}</span>
+                            </div> : 
 
                             <span id={list._id} className='w-full py-2 text-lastmessage-sumary-sidebar text-color-lastmessage ml-1'>The chat has no messages yet</span>
                         }

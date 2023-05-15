@@ -8,20 +8,15 @@ import { useState } from 'react';
 
 
 function SendChatControl({ socket, roomChoosing, Api }) {
+    const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const [text, setText] = useState('')
     const [openEmoji, setOpenEmoji] = useState(false)
     const [emoji, setEmoji] = useState('')
-    console.log(emoji);
-    const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     const userName = user.userName  
+    const timer = new Date()
     
     const ChatCurrentListenChange = (e) => {
         const value = e.target.value
-        // if(value.length > 0) {
-        //     socket.emit('typing-action', { userName, typing :true })
-        // }else {
-        //     socket.emit('typing-action', { userName, typing :false })
-        // }
         setText(value)
     }
 
@@ -38,7 +33,14 @@ function SendChatControl({ socket, roomChoosing, Api }) {
             {   
                 id: roomChoosing[0]._id,
                 userName: userName,
-                message: text
+                message: text,
+                createAt: {
+                    minutes: timer.getMinutes(),
+                    hour: timer.getHours(),
+                    date: timer.getDate(),
+                    month: timer.getMonth(),
+                    year: timer.getFullYear()
+                }
             })
             .then(result => {
                
