@@ -6,6 +6,12 @@ function ListChat({ room ,socket }) {
     const [idRoomChoosing, setIdRoomChoosing] = useState(undefined)
     const [seenChat, setSeenChat] = useState(false)
 
+    // useEffect(() => {
+    //     socket.on('chat-from-user', (data) => {
+            
+    //     }) 
+    // }, [socket])
+
     const navigate = useNavigate()
     const param = useParams()
     
@@ -34,10 +40,10 @@ function ListChat({ room ,socket }) {
                         <span id={list._id} className=' font-bold' >{list.roomName}</span>
                         {list.messages.length > 0 ? 
                             <div className='w-full flex justify-between items-center'>
-                                <span id={list._id} className='w-full py-1 text-sm text-color-lastmessage flex-1'>
+                                <span id={list._id} className='w-full py-1 line-clamp-1 text-sm text-color-lastmessage flex-1'>
                                     {list.messages[list.messages.length -1].userName } : { list.messages[list.messages.length -1].text}
                                 </span>
-                                <span id={list._id} className=' w-14 text-xs pb-2 pt-1 text-color-lastmessage max-sm:text-sm'> {list.messages[list.messages.length -1].createAt.hour} : {list.messages[list.messages.length -1].createAt.minutes}</span>
+                                <span id={list._id} className=' w-12 text-xs pb-1 pt-1 text-color-lastmessage max-sm:text-sm'> {list.messages[list.messages.length -1].createAt.hour} : {list.messages[list.messages.length -1].createAt.minutes}</span>
                             </div> : 
 
                             <span id={list._id} className='w-full py-2 text-lastmessage-sumary-sidebar text-color-lastmessage ml-1'>The chat has no messages yet</span>

@@ -8,7 +8,6 @@ import SignUp from "./pages/Home/SignUp/SignUp"
 import ChatWindow from "./pages/ChatPage/ChatWindow/ChatWindow"
 import Account from "./pages/Account/Account"
 import Setting from "./pages/Setting/Setting"
-import Login from "./pages/Home/Login/Login"
 
 const ApiSocket = process.env.REACT_APP_SERVER_SOCKETIO
 const Api = process.env.REACT_APP_API

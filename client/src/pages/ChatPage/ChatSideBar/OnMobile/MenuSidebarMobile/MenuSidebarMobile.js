@@ -28,7 +28,7 @@ function MenuSidebarMobile({ closeMenu, openMenu ,info }) {
 
     return (
             <div className={`hidden max-sm:flex w-full h-full top-0 left-0 absolute ${openMenu ? 'translate-x-0' : '-translate-x-full'} transition-all duration-200 flex justify-between`}>
-                <div className={` bg-color-sidebar w-4/6  `}>
+                <div className={` bg-color-sidebar dark:bg-dark-color-sidebar w-4/6  `}>
                    <div className="flex justify-between items-center px-2 pt-5 max-w-xs w-full flex-wrap">
                         <div className="user flex items-center">
                             <img alt="avatar" src='https://i.pinimg.com/564x/f1/43/64/f1436415a2a208043bdef80c73d66b4a.jpg' 
@@ -37,7 +37,7 @@ function MenuSidebarMobile({ closeMenu, openMenu ,info }) {
                             <h2 className="text-base font-semibold">{info.firstName} {info.lastName}</h2>
                         </div>
 
-                        <div onClick={() => setOpenSetting(!openSetting)} className="user-detail px-3 py-2 rounded-full hover:bg-color-message text-black">
+                        <div onClick={() => setOpenSetting(!openSetting)} className="user-detail px-3 py-2 rounded-full hover:bg-color-message dark:text-white text-black">
                             <span className=""><FontAwesomeIcon icon={faPencil} /></span>
                         </div>      
                    </div>
@@ -46,7 +46,7 @@ function MenuSidebarMobile({ closeMenu, openMenu ,info }) {
                         <ul className="w-full">
                             {listMenu.map((list, index) => (
                                 <Link to={list.to} onClick={closeMenu} key={index}>
-                                    <li className=" w-full px-3 py-3 mb-4 text-center font-semibold text-lg bg-color-message">{list.title}</li>
+                                    <li className=" w-full px-3 py-3 mb-4 text-center font-semibold text-lg dark:bg-dark-color-message bg-color-message">{list.title}</li>
                                 </Link>
                                 
                             ))}
@@ -62,7 +62,7 @@ function MenuSidebarMobile({ closeMenu, openMenu ,info }) {
                    
                 </div>
 
-                <div className={`absolute bg-red-400 w-full h-full mt-6 ${openSetting ? 'translate-y-0' : 'translate-y-full'} transition-all duration-300 `}>
+                <div className={`absolute dark:bg-dark-color-sidebar bg-color-sidebar w-full h-full mt-6 ${openSetting ? 'translate-y-0' : 'translate-y-full'} transition-all duration-300 `}>
                     <References close={() => setOpenSetting(!openSetting)} user={info} />
                 </div>
 

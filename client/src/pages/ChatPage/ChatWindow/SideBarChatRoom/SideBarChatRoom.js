@@ -28,15 +28,15 @@ const listOption = [
         title: 'Media files, files and links',
         option_detail: [
             {
-                id:'',
+                id:'1',
                 title: 'Media files'
             },
             {
-                id:'',
+                id:'2',
                 title: 'Files'
             },
             {
-                id:'',
+                id:'3',
                 title: 'Links'
             },
             
@@ -61,6 +61,8 @@ function SideBarChatRoom({ data, BackToChatContent }) {
     const [allMember, setAllMemeber] = useState(false)
 
     const [openList, setOpenList] = useState(null)
+
+    console.log(openList);
 
 
     const handleAlert = () => {
@@ -110,23 +112,21 @@ function SideBarChatRoom({ data, BackToChatContent }) {
                     <ul>
                         {
                             listOption.map((list, index) => (
-                                <li key={index} className="flex flex-col my-2 py-2 px-2"> 
+                                <li key={index} className="flex flex-col my-2 py- px-2"> 
                                     <div id={list.id} onClick={(e) => setOpenList(e.target.id)} className="flex items-center justify-between">
-                                        <span>{list.title} </span>
-                                        <span><FontAwesomeIcon icon={faAngleUp} /></span>
+                                        <span id={list.id}>{list.title} </span>
+                                        <span id={list.id} ><FontAwesomeIcon icon={faAngleUp} /></span>
                                     </div>
 
                                     
-                                        <div className={` h-fit transition-all detail-item flex flex-col mt-1`}>
-                                            {list.option_detail.map((item, index) => (
-                                            <div key={index} className="flex items-center my-1">
-                                                {/* <span className="mr-3 w-5 text-base"><FontAwesomeIcon icon={faImage} /></span> */}
-                                                <span>{item.title}</span>
-                                            </div>
-                                            ))}
+                                    <div className={`${list.id !== openList ? 'h-0 overflow-hidden' : 'h-fit'} opacity-100 transition-all detail-item flex flex-col mt-1`}>
+                                        {list.option_detail.map((item, index) => (
+                                        <div key={index} id={item.id} className="flex items-center my-1">
+                                            {/* <span className="mr-3 w-5 text-base"><FontAwesomeIcon icon={faImage} /></span> */}
+                                            <span>{item.title}</span>
                                         </div>
-                                    
-
+                                        ))}
+                                    </div>
                                     
                                     
                                 </li>

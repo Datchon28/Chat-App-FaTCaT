@@ -13,7 +13,6 @@ function SendChatControl({ socket, roomChoosing, Api }) {
     const [openEmoji, setOpenEmoji] = useState(false)
     const [emoji, setEmoji] = useState('')
     const userName = user.userName  
-    const timer = new Date()
     
     const ChatCurrentListenChange = (e) => {
         const value = e.target.value
@@ -35,14 +34,12 @@ function SendChatControl({ socket, roomChoosing, Api }) {
                 userName: userName,
                 message: text,
                 createAt: {
-                    minutes: timer.getMinutes(),
-                    hour: timer.getHours(),
-                    date: timer.getDate(),
-                    month: timer.getMonth(),
-                    year: timer.getFullYear()
+                    minutes: new Date().getMinutes(),
+                    hour: new Date().getHours(),
+                    date: new Date().getDate(),
+                    month: new Date().getMonth(),
+                    year: new Date().getFullYear()
                 }
-                
-                
             })
             .then(result => {
                

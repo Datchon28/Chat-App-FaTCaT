@@ -13,6 +13,34 @@ function Account() {
         reader.readAsDataURL(e.target.files[0])
     }
 
+    const infomationUser = [
+        {
+            id: '1',
+            title: 'Username',
+            value:'',
+        },
+        {
+            id: '2',
+            title: 'Email',
+            value:'',
+        },
+        {
+            id: '3',
+            title: 'First Name',
+            value:'',
+        },
+        {
+            id: '4',
+            title: 'Last Name',
+            value:'',
+        },
+        {
+            id: '5',
+            title: 'Phone Number',
+            value:'',
+        }   
+    ]
+
     return (
         <div className=' mt-4 dark:text-white px-3'>
             <form>
@@ -45,42 +73,19 @@ function Account() {
                         </div>
 
                         {/* Infomation User */}
-                        <div>
-                            <div className=''>
-                                <label>
-                                    Username
-                                </label>
-                                <div>
-                                    <input />
+                        <div className='flex flex-col justify-between items-center mt-7'>
+                            <h2 className='mb-3 text-lg font-semibold'>Your Infomation</h2>
+                            {infomationUser.map((info, index) => (
+                                <div className='w-full px-1 mb-3'>
+                                    <label className=''>
+                                        {info.title}
+                                    </label>
+                                    <div>
+                                        <input className='w-full rounded-md text-white dark:text-black px-2 py-1' />
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div>
-                                <label>
-                                    Email
-                                </label>
-                                <div>
-                                    <input />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>
-                                    First Name
-                                </label>
-                                <div>
-                                    <input />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label>
-                                    Last Name
-                                </label>
-                                <div>
-                                    <input />
-                                </div>
-                            </div>
+                            ))}
+                             
                         </div>
                     </div> 
                 </div>

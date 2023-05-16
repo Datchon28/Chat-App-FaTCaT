@@ -47,7 +47,7 @@ function ChatSideBar({ socket }) {
     }
    
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
+        window.scrollTo({ top: 0, behavior: 'smooth' }) 
 
         axios.get(`${Api}/rooms/detail?admin=${currentUser._id}&person=${currentUser.userName}` )
         .then(room => {

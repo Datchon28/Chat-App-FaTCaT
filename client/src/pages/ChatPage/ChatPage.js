@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 
 function ChatPage({ socket, children }) {
     const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
-
+    
     return (
        <>
         {user ? 

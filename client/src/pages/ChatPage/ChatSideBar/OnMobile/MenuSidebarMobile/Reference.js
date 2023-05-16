@@ -1,6 +1,13 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const option = [
+    {
+        id: '',
+        title: ''
+    }
+]
+
 function References({ user, close }) {
     return (
         <div className="">
