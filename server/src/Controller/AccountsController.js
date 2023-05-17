@@ -56,6 +56,21 @@ class AccountsController {
             next()
         }
     }
+
+    async EditAccount (req, res, next) {
+        try {
+           const update =  await Accounts.updateOne({ _id: req.query.id}, {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+        }).then(data => {
+            res.status(200).send(data)
+        })
+        } catch (error) {
+            res.status(500).send(error)
+            next()
+        }
+    }
 }
 
 module.exports = new AccountsController

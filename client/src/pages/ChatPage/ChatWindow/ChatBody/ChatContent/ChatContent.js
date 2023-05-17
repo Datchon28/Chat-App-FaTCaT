@@ -9,6 +9,7 @@ import {
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import { text } from '@fortawesome/fontawesome-svg-core';
+import { Spinner } from '../../../../../components/Loading/Spinner';
 
 var images = [
     { id: 'like', unicode: '&#x1f44d;' },
@@ -55,9 +56,7 @@ function ChatContent({ message, roomChoosing, loading }) {
             <ul className="list-chat mt-3 flex flex-col overflow-hidden overflow-y-scroll h-full scroll-smooth pt-2 pl-2 ">
                 <div>
                     {loading === true && (
-                        <span className=" text-lg absolute animate-spin left-[48%] dark:text-white text-black">
-                            <FontAwesomeIcon icon={faSpinner} />
-                        </span>
+                        <Spinner />
                     )}
                 </div>
 

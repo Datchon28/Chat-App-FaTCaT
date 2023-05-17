@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 4000
 const db = require('./src/db')
 const SignUp = require('./src/routes/SignUp')
 const Login = require('./src/routes/Login')
+const EditUserInfo = require('./src/routes/EditUserInfo')
 const Search = require('./src/routes/Search')
 
 const Rooms = require('./src/routes/Rooms')
@@ -29,6 +30,7 @@ app.use('/signup', SignUp)
 app.use('/login', Login)
 app.use('/search', Search)
 app.use('/rooms', Rooms)
+app.use('/user-detail', EditUserInfo)
 
 app.use('/', (req, res) => {
   res.send('Welcome to Server Chat App Fat Cat')

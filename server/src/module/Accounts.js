@@ -8,6 +8,7 @@ const Accounts = new Schema({
     firstName: {type: String, default: null},
     lastName: {type: String, default: null}, 
     email: {type: String, required: true},
+    phoneNumber: {type: String, default: null},
     createAt: { type: Date, default: Date.now }
 })
 

@@ -1,40 +1,99 @@
 import { faArrowLeft, faPencil } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Spinner } from '../../components/Loading/Spinner'
 
 function Account() {
+    // Current User Infomation
+    const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user')) 
+    
+    // State 
+    const [edit, setEdit] = useState(false)
+    const [userName, setUserName] = useState(user.userName);
+    const [email, setEmail] = useState(user.email);
+    const [firstName, setFirstName] = useState(user.firstName);
+    const [lastName, setLastName] = useState(user.lastName);
+    const [phoneNumber, setPhoneNumber] = useState('');
+    
+    const [loading, setLoading] = useState(false)
+
     const infomationUser = [
         {
-            id: '1',
+            id: 'userName',
             title: 'Username',
-            value:'',
+            value: userName,
         },
         {
-            id: '2',
+            id: 'email',
             title: 'Email',
-            value:'',
+            value: email,
         },
         {
-            id: '3',
+            id: 'firstName',
             title: 'First Name',
-            value:'',
+            value: firstName,
         },
         {
-            id: '4',
+            id: 'lastName',
             title: 'Last Name',
-            value:'',
+            value: lastName,
         },
         {
-            id: '5',
+            id: 'phoneNumber',
             title: 'Phone Number',
             value:'',
         }   
     ]
-    const user = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user')) 
-    // State 
-    const [edit, setEdit] = useState(false)
+
+    const SaveEdit = async () => {
+        setLoading(true)
+        await axios.put(`http://localhost:5005/user-detail?id=${user._id}`, {
+            firstName: firstName,
+            lastName: lastName, 
+            email: email,
+        }).then(() => {
+            const userAfterEdit = {
+                ...user,
+                firstName: firstName,
+                lastName: lastName, 
+                email: email
+            }
+            localStorage.setItem('user', JSON.stringify(userAfterEdit))
+        })
+        .catch(err => {
+            if(err) {
+                alert('Something Went Wrong. Please Try Again Later...')
+                return
+            }
+            return
+        })
+        setLoading(false)
+    }
+    
+    const changeInfo = (e) => {
+        const id = e.target.id 
+        switch (id) {
+            case 'firstName':
+                setFirstName(e.target.value)
+                break;
+             
+            case 'lastName':
+                setLastName(e.target.value)
+                break
+            case 'email':
+                setEmail(e.target.value)
+                break
+            case 'phoneNumber':
+            setPhoneNumber(e.target.value)
+            break
+        default:
+            break;
+        }
+    }
+
 
     const ChangeImage = (e) => {
         const reader = new FileReader()
@@ -45,9 +104,11 @@ function Account() {
         reader.readAsDataURL(e.target.files[0])
     }
 
+
+
     return (
         <div className=' mt-4 dark:text-white px-3'>
-            <form>
+            <form method='PUT' >
                 <div className="space-y-12">
                     <div className="border-b border-gray-900/10">
                         <div className='flex items-center'>
@@ -60,18 +121,15 @@ function Account() {
                         {/* Avatar User */}
                         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
                             <div className="col-span-full mt-4">
-                                <label htmlFor="photo" className="block text-sm font-medium leading-6 ">
+                                <span htmlFor="photo" className="block text-sm font-medium leading-6 ">
                                     Photo
-                                </label>
+                                </span>
                                 <div className="mt-2 flex items-center gap-x-3">
                                     <UserCircleIcon className="h-12 w-12 " aria-hidden="true" />
-{/*                                     
-                                    <input className="rounded-md  bg-white px-2.5 py-1.5 text-sm font-semibold  shadow-sm "
-                                     onClick={ChangeImage}  type='file' 
-                                     /> */}
+                                    <input onChange={ChangeImage} placeholder='Change' type='file' className='rounded-md w-24 p-1 bg-white text-sm font-semibold  shadow-sm' />
                                    
                                 </div>
-                                {/* <input onChange={ChangeImage} type='file'  className='w-12 mr-3 rounded-full object-cover' /> */}
+                                
                             </div>
                         </div>
 
@@ -82,15 +140,18 @@ function Account() {
                                 <span onClick={() => setEdit(true)} className='text-xs ml-2 hover:bg-slate-600 hover:text-white rounded-full px-1.5 py-1'><FontAwesomeIcon icon={faPencil} /></span>
                             </div>
                             {infomationUser.map((info, index) => (
-                                <div className='w-full px-1 mb-3'>
-                                    <label className='' htmlFor={info.id}>
+                                <div key={index} className='w-full px-1 mb-3'>
+                                    <span className='' htmlFor={info.id}>
                                         {info.title}
-                                    </label>
+                                    </span>
 
                                     <div id={info.id} className='mt-1'> 
                                         <input
-                                         disabled={edit ? false : true}
-                                         className='w-full disabled:bg-slate-200 rounded-md border border-solid border-gray-800  text-black dark:text-white px-2 py-1' 
+                                            id={info.id}
+                                            value={info.value}
+                                            onChange={(e) => changeInfo(e)}
+                                            disabled={edit && info.id !== 'userName' ? false : true}
+                                            className={`w-full ${edit ? 'cursor-text' : 'cursor-no-drop'} disabled:bg-slate-200 rounded-md border border-solid border-gray-800  text-black dark:text-white px-2 py-1`}
                                         />
                                     </div>
                                 </div>
@@ -100,18 +161,22 @@ function Account() {
                     </div> 
                 </div>
                 
-                <div className="mt-6 flex items-center justify-end gap-x-6">
-                    <button onClick={() => setEdit(false)} type="button" className="text-lg font-semibold leading-6 ">
-                    Cancel
-                    </button>
-                    <button
-                    type="submit"
-                    className="rounded-md dark:bg-dark-color-primary bg-color-primary px-3 py-2 text-lg font-semibold text-white shadow-sm hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                    Save
-                    </button>
-                </div>
+                {edit && 
+                    <div className="mt-6 flex items-center justify-end gap-x-6">
+                        <button onClick={() => setEdit(false)} type="button" className="text-lg font-semibold leading-6 ">Cancel</button>
+                        <button
+                            onClick={SaveEdit}
+                            type="submit"
+                            className="rounded-md dark:bg-dark-color-primary bg-color-primary px-3 py-2 text-lg font-semibold text-white shadow-sm hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        > Save </button>
+                    </div>
+                }
             </form>
+            {loading &&        
+                <div className="fixed w-full h-full top-0 left-0 bg-modal">
+                    <Spinner />        
+                </div>
+            }
         </div>
     );
 }

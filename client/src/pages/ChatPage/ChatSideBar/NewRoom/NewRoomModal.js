@@ -5,7 +5,6 @@ import { useState } from "react";
 
 function NewRoomModal({ onClick, createNewRoom, onChangeRoomName, roomName, onChangeMember, member, AddMemberBtn, list, handleDeleteMem }) {
     
-
     return (
         <Modal maxWidth={'max-w-modal-new-room'} maxHeight={'max-h-modal-new-room'}>
             <div className='bg-color-sidebar dark:bg-dark-color-sidebar  shadow-lg shadow-slate-500 rounded-md px-4 py-3 w-full h-full border border-solid border-slate-500'> 
@@ -56,3 +55,6 @@ function NewRoomModal({ onClick, createNewRoom, onChangeRoomName, roomName, onCh
 }
 
 export default NewRoomModal;
+
+
+
