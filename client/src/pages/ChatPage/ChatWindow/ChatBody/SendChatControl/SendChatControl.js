@@ -64,13 +64,13 @@ function SendChatControl({ socket, roomChoosing, Api }) {
                         <FontAwesomeIcon icon={faFaceSmile} />
                     </span>
 
-                    {/* {openEmoji && <div className='absolute bottom-12 left-0'><EmojiPicker onEmojiClick={(EmojiClickData) => setEmoji('&#x'+EmojiClickData.unified+';')} /></div>} */}
+                    {openEmoji && <div className='absolute bottom-12 left-0'><EmojiPicker onEmojiClick={(EmojiClickData) => setEmoji('&#x'+EmojiClickData.unified+';')} /></div>}
                 </div>
                 
-                <div>
+                {/* <div>
                     <h3 dangerouslySetInnerHTML={{__html: emoji}}></h3>
                     
-                </div>
+                </div> */}
                 
                 <div className=" w-4/5 h-full">
                     <input type="text" className="bg-color-sidebar dark:bg-dark-color-sidebar dark:outline-none outline outline-1 outline-slate-300 pr-8 rounded-lg pl-3 w-full h-full bg-color-input placeholder:text-slate-500" 
@@ -79,7 +79,7 @@ function SendChatControl({ socket, roomChoosing, Api }) {
                 </div>
 
                 <div className='flex justify-between items-center ml-4'>
-                    <button className=" text-white hover:brightness-125 bg-sky-500 px-3 py-padding-send-btn rounded-md text-center flex items-center justify-between">
+                    <button className=" text-white hover:brightness-125 bg-color-primary px-3 py-padding-send-btn rounded-md text-center flex items-center justify-between">
                         <span className='pr-1 max-sm:hidden'>Send</span>
                         <span><FontAwesomeIcon icon={faPaperPlane} /></span>
                     </button>

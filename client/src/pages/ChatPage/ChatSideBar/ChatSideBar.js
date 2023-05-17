@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import Search from "./Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faPlus, faSignOut } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +18,7 @@ function ChatSideBar({ socket }) {
     // User
     const currentUser = JSON.parse(localStorage.getItem('user')) ||  JSON.parse(sessionStorage.getItem('user'))
     
+    const [loading, setLoading] = useState(false)
 
     // OpenRoom Toggle
     const [openChatRoom, setOpenChatRoom] = useState(false)
@@ -45,14 +46,19 @@ function ChatSideBar({ socket }) {
         sessionStorage.removeItem('user')
         navigate('/')
     }
-   
+
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' }) 
 
-        axios.get(`${Api}/rooms/detail?admin=${currentUser._id}&person=${currentUser.userName}` )
-        .then(room => {
-            setRoom(room.data);
-        })
+        const fetData = async() => {
+            setLoading(true)
+            await axios.get(`${Api}/rooms/detail?admin=${currentUser._id}&person=${currentUser.userName}` )
+            .then(room => {
+                setRoom(room.data);
+            })
+            setLoading(false)
+        }
+        fetData()
 
     }, [Api, currentUser._id, currentUser.userName, createRoomSucess])
 
@@ -152,16 +158,16 @@ function ChatSideBar({ socket }) {
                     </div>
                 }
                 
-                <ListChat socket={socket} room={room} />
+                <ListChat loading={loading} socket={socket} room={room} />
                 
             </div>
 
             <div className="h-14 flex items-start justify-between mb-2 max-sm:hidden">
                     <DropMenu content={
                         <>
-                            <li onClick={() => navigate('/account')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Account</li>
-                            <li onClick={() => navigate('/setting')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 my-1 font-semibold">Setting</li>
-                            <li className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-2 my-1 font-semibold rounded-b-md">
+                            <li onClick={() => navigate('/account')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 font-semibold">Account</li>
+                            <li onClick={() => navigate('/setting')} className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-10 py-3 font-semibold">Setting</li>
+                            <li className="cursor-pointer bg-color-none-seen dark:bg-dark-color-none-seen text-center hover:bg-sky-600 dark:hover:bg-sky-600 transition-colors hover:text-white px-4 py-2 font-semibold rounded-b-md">
                                 <button className='' onClick={handleSignOut}>
                                     <span className=" text-center pt-1 mr-2 text-lg"><FontAwesomeIcon icon={faSignOut} /></span>
                                     Sign Out

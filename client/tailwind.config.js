@@ -11,12 +11,14 @@ module.exports = {
         'avatar': '4.2%',
         'width-form-login-signup' : '50%',
         'modal-new-room': '85%',
-
+        'list-chat-mobile': '379px',
+        'list-chat': '285px',
       },
       maxHeight : {
         'navbar' : '90px',
         'height-child-list-chat-sidebar': 'calc(100% - 160px)',
-        'modal-new-room' : '450px'
+        'modal-new-room' : '450px',
+        'list-chat': '84px'
       },
       margin: {
         'navbar' : '90px',
@@ -30,6 +32,7 @@ module.exports = {
       width: {
         'chat-window-width' : 'calc(100% - (320px + 320px))',
         'chat-window-width-none-choosing-room' : 'calc(100% - 240px)',
+        'list-chat': '379px',
       },
 
       height: {

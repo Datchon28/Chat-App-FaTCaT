@@ -1,14 +1,9 @@
-import React, { createElement, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ChatContent.custome.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faAngleLeft,
-    faSpinner,
-    faTrash,
-} from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
-import { text } from '@fortawesome/fontawesome-svg-core';
 import { Spinner } from '../../../../../components/Loading/Spinner';
 
 var images = [
@@ -25,28 +20,15 @@ function ChatContent({ message, roomChoosing, loading }) {
     const lastMessage = useRef(null);
     const [thisMessage, setThisMessage] = useState('');
     const [reaction, setReaction] = useState(null);
-    const [test, setTest] = useState([])
-    
 
     useEffect(() => {
         lastMessage.current?.scrollIntoView({ behavior: 'smooth' });
     }, [message]);
 
     const handleReaction = (id) => {
-        const current = document.getElementById(thisMessage)
-        const react = document.getElementById('react')
-        const lol = document.createElement('span')
         const reaction = images.filter((item) => item.id === id);
         setReaction(reaction[0].unicode);
-        setTest([{ ...test }, { id:'', li: reaction[0].unicode }])
-        lol.textContent = 
-        // if(current.id !== thisMessage) {
-        //     current.classList.add('hidden')
-        // }
-        console.log(current.id);
     };
-
-    console.log(test);
 
     return (
         <div
@@ -54,10 +36,8 @@ function ChatContent({ message, roomChoosing, loading }) {
             className="chat-content h-height-chat-content bg-color-content dark:bg-dark-color-content overflow-hidden bg-scroll"
         >
             <ul className="list-chat mt-3 flex flex-col overflow-hidden overflow-y-scroll h-full scroll-smooth pt-2 pl-2 ">
-                <div>
-                    {loading === true && (
-                        <Spinner />
-                    )}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    {loading && <Spinner />}
                 </div>
 
                 {roomChoosing.length > 0 &&
@@ -68,11 +48,13 @@ function ChatContent({ message, roomChoosing, loading }) {
                                 <li
                                     key={index}
                                     id="user"
-                                    className={`flex items-center ${
-                                        currentUser.userName === ms.userName ? 'justify-end' : 'justify-start mb-2'
+                                    className={`flex items-center justify-between ${
+                                        currentUser.userName === ms.userName
+                                            ? ' flex-row-reverse'
+                                            : 'justify-start mb-2'
                                     } text-color-title dark:text-white font-semibold w-full py-1 px-1 mb-1`}
                                 >
-                                    <div className=" flex  items-end ">
+                                    <div className=" flex items-end ">
                                         {/* Avatar */}
                                         <div
                                             id={index}
@@ -142,7 +124,7 @@ function ChatContent({ message, roomChoosing, loading }) {
                                                 )}
                                                 interactive
                                             >
-                                                <p  
+                                                <p
                                                     id={ms._id}
                                                     className={` relative w-fit rounded-xl max-w-xs py-2 text-center ${
                                                         currentUser.userName === ms.userName
@@ -152,10 +134,15 @@ function ChatContent({ message, roomChoosing, loading }) {
                                                 >
                                                     {ms.text && ms.text}
                                                     {}
-                                                    
                                                 </p>
                                             </Tippy>
                                         </div>
+                                    </div>
+
+                                    <div className="hidden timer peer mx-3 text-sm dark:text-color-search-icon">
+                                        <span>
+                                            {ms.createAt.hour} : {ms.createAt.minutes}
+                                        </span>
                                     </div>
                                 </li>
                             ),
@@ -165,11 +152,11 @@ function ChatContent({ message, roomChoosing, loading }) {
                     <li
                         key={index}
                         id="user"
-                        className={`flex items-center ${
-                            currentUser.userName === ms.userName ? 'justify-end' : 'justify-start mb-2'
+                        className={`flex items-center justify-between ${
+                            currentUser.userName === ms.userName ? ' flex-row-reverse' : 'justify-start mb-2'
                         } text-color-title dark:text-white font-semibold w-full py-1 px-1 mb-1`}
                     >
-                        <div className=" flex  items-end ">
+                        <div className=" flex items-end ">
                             {/* Avatar */}
                             <div
                                 id={index}
@@ -244,13 +231,16 @@ function ChatContent({ message, roomChoosing, loading }) {
                                         } px-4 py-1  `}
                                     >
                                         {ms.text && ms.text}
-                                        <span
-                                            className=" absolute -bottom-2 text-sm px-1 bg-red-500 right-2 z-10 rounded-full"
-                                            dangerouslySetInnerHTML={{ __html: reaction }}
-                                        ></span>
+                                        {}
                                     </p>
                                 </Tippy>
                             </div>
+                        </div>
+
+                        <div className="hidden timer peer mx-3 text-sm dark:text-color-search-icon">
+                            <span>
+                                {ms.createAt.hour} : {ms.createAt.minutes}
+                            </span>
                         </div>
                     </li>
                 ))}
@@ -262,13 +252,3 @@ function ChatContent({ message, roomChoosing, loading }) {
 
 export default ChatContent;
 
-
-// {
-//     ms._id === thisMessage ? 
-//     <span
-    
-//     id='react'
-//     className={`  absolute -bottom-2 text-sm px-0.5 py-px bg-red-500 right-2 z-10 rounded-full`}
-//     dangerouslySetInnerHTML={{ __html: reaction }}
-// ></span> : null
-// }

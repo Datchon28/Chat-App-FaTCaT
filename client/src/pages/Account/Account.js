@@ -174,7 +174,9 @@ function Account() {
             </form>
             {loading &&        
                 <div className="fixed w-full h-full top-0 left-0 bg-modal">
-                    <Spinner />        
+                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
+                        <Spinner />
+                    </div>
                 </div>
             }
         </div>
