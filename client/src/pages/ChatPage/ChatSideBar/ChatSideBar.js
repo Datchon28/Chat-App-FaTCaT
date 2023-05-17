@@ -58,6 +58,9 @@ function ChatSideBar({ socket }) {
 
 
     const AddMemberBtn = () => { 
+        if(member === '') {
+            return
+        }   
         setList([...list, member])
         setMember('')
     }
