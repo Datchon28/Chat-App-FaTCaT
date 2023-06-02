@@ -251,4 +251,3 @@ function ChatContent({ message, roomChoosing, loading }) {
 }
 
 export default ChatContent;
-
