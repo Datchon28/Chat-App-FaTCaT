@@ -239,7 +239,7 @@ function ChatContent({ message, roomChoosing, loading }) {
 
                         <div className="hidden timer peer mx-3 text-sm dark:text-color-search-icon">
                             <span>
-                                {ms.createAt.hour} : {ms.createAt.minutes}
+//                                 {ms.createAt.hour} : {ms.createAt.minutes}
                             </span>
                         </div>
                     </li>
